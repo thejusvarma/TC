@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Information</legend>
+            {{ form.reg_num.label(class="form-group-label") }}
+            {{ form.reg_num(class="form-control",placeholder="Registration Number") }}
+            <div class="form-group">
+                {{ form.submit(class="btn btn-secondary")}}
+            </div>
+        </fieldset>
+{% endblock content %}

@@ -11,16 +11,18 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '48c92cc12c8608d0ae64d2615acf501a'
 
+
 @app.route('/home',methods=['GET','POST'])
 def home():
         form = rollnumform()
         form2 = uploadfile()
 
-       
         if form.roll_num.data:
-            # input_roll_num = form.roll_num.data
-            # excel_data = pd.read_excel(form2.uploaded_file)
-            # df[df["Country"] == '{{}}'].head()
+            rn = form.roll_num.data
+            df = pd.read_excel('gen_app\static\excel.xlsx')
+            print(df)
+            # data = df[df['Conduct'] == 'Satisfactory']
+            # print(data)
             df = ['thej','dffd']
             img  =  Image.open('gen_app\static\TC.jpg')
             draw = ImageDraw.Draw(img)
@@ -30,12 +32,10 @@ def home():
 
         if form2.uploaded_file.data:
             # data = pd.read_excel(form2.uploaded_file)
-            filename = secure_filename(form2.uploaded_file.data.filename)
-            filepath = os.path.join(r'gen_app\static','excel')
+            # filename = secure_filename(form2.uploaded_file.data['excel'].filename)
+            filepath = os.path.join(r'gen_app\static','excel.xlsx')
             form2.uploaded_file.data.save(filepath)
-            return render_template('info.html',title='home',form=form,form2=form2)
-
-
+            return render_template('home.html',title='home',form=form,form2=form2)
 
         return render_template('home.html',title='home',form2=form2,form=form)
 

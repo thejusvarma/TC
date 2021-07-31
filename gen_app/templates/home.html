@@ -1,13 +1,27 @@
 {% extends "layout.html" %}
 {% block content %}
+    
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form2.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Information</legend>
+            {{ form2.uploaded_file(class="form-control",placeholder="Upload File") }}
+            <div class="form-group">
+                {{ form2.submit(class="btn btn-secondary")}}
+            </div>
+        </fieldset>
+    </form>
+
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Information</legend>
-            {{ form.reg_num.label(class="form-group-label") }}
-            {{ form.reg_num(class="form-control",placeholder="Registration Number") }}
+            {{ form.roll_num.label(class="form-group-label") }}
+            {{ form.roll_num(class="form-control",placeholder="Roll Number") }}
             <div class="form-group">
                 {{ form.submit(class="btn btn-secondary")}}
             </div>
         </fieldset>
+    </form>
 {% endblock content %}

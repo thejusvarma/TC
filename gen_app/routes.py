@@ -1,6 +1,5 @@
-
 from flask import Flask, send_file,escape,render_template,url_for,flash,redirect, request, abort,send_file, send_from_directory, safe_join
-from gen_app import app
+from gen_app import app,db
 from numpy import dtype
 from gen_app.forms import rollnumform, uploadfile
 from PIL import Image,ImageFont,ImageDraw
@@ -9,7 +8,6 @@ import os
 import sys
 from io import BytesIO
 from werkzeug.utils import secure_filename
-
 
 
 @app.route('/home',methods=['GET','POST'])

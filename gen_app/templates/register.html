@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div>
+        <!-- register form -->
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Join Today</legend>
+
+                <!-- username field -->
+                <div class="form-group ">
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control is-invalid",placeholder="Username" ) }}
+                            <div class="invalid-feedback">
+                                {% for error in form.username.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                    {% else %}
+                            {{ form.username(class="form-control",placeholder="Username") }}
+                    {% endif %}
+                </div>
+
+                <!-- email field -->
+                <div class="form-group">
+                    {% if form.email.errors %}
+                    <!-- input field goes red becouse of error -->
+                    {{ form.email(class="form-control is-invalid",placeholder="Email") }}
+                        <div class="invalid-feedback">
+                            <!-- printing the error under the field -->
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <!-- correctly filled field -->
+                        {{ form.email(class="form-control",placeholder="Email") }}
+                    {% endif %}
+                </div>
+
+                <!-- password field -->
+                <div class="form-group">
+                    {% if form.password.errors %}
+                    {{ form.password(class="form-control is-invalid",placeholder="Password") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control",placeholder="password") }}
+                    {% endif %}
+                </div>
+
+                <!-- conirm password field -->
+                <div class="form-group">
+                    {% if form.confirm_password.errors %}
+                    {{ form.confirm_password(class="form-control is-invalid",placeholder="Confirm Password") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control",placeholder="Confirm Password") }}
+                    {% endif %}                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-secondary")}}
+            </div>
+        </form>
+    </div>
+    <div class="text-muted">
+    </div>
+  
+{% endblock content %}

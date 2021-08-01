@@ -1,13 +1,15 @@
 from flask import Flask, send_file,escape,render_template,url_for,flash,redirect, request, abort,send_file, send_from_directory, safe_join
-from gen_app import app,db
 from numpy import dtype
-from gen_app.forms import rollnumform, uploadfile
+from gen_app.forms import rollnumform, uploadfile, RegistrationForm
 from PIL import Image,ImageFont,ImageDraw
 import pandas as pd
 import os
 import sys
 from io import BytesIO
 from werkzeug.utils import secure_filename
+from gen_app import app,db, bcrypt
+from gen_app.models import User,Issued
+from flask_login import login_user, current_user, logout_user, login_required
 
 
 @app.route('/home',methods=['GET','POST'])
@@ -51,3 +53,21 @@ def home():
 @app.route('/return-file/', methods=['GET', 'POST'])
 def file_download():
     return send_file(r'static\saved\TC.pdf',attachment_filename='TC.pdf')
+
+
+@app.route("/register",methods=['GET','POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    # making instance (form) of RegsitrationForm class made in forms.py
+    form = RegistrationForm()
+    # if content is validated then flashing message and updating data into database
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password = hashed_password)
+        db.session.add(user)
+        db.session.commit()
+        flash(f'Account created! Login Please','success')
+        return redirect(url_for('home'))
+    return render_template('register.html',title='Register',form=form)
+ 

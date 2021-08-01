@@ -1,0 +1,68 @@
+<!-- extending the primary layout of page from layout.html -->
+{% extends "layout.html" %}  
+
+<!-- running the following code in content block of layout.html -->
+{% block content %}
+    <div>
+        <!-- login form -->
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Login</legend>
+
+                <!-- email input -->
+                <div class="form-group">
+                    {% if form.email.errors %}
+                        <!-- input field goes red becouse of error -->
+                        {{ form.email.label(class="form-group-label") }}
+                        {{ form.email(class="form-control is-invalid",placeholder="Email") }}
+                        <div class="invalid-feedback">
+                            <!-- displaying errors under the field -->
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <!-- correctly filled field -->
+                        {{ form.email.label(class="form-group-label") }}
+                        {{ form.email(class="form-control",placeholder="Email") }}
+                    {% endif %}
+                </div>
+
+                <!-- password input -->
+                <div class="form-group">
+                    {% if form.password.errors %}
+                        {{ form.password.label(class="form-group-label") }}
+                        {{ form.password(class="form-control is-invalid",placeholder="Password") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password.label(class="form-group-label") }}
+                        {{ form.password(class="form-control",placeholder="password") }}
+                    {% endif %}
+                </div>
+
+                <!-- remember me checkbox -->
+                <div class="form-check">
+                    {{  form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+            </fieldset>
+
+            <!-- submit button -->
+            <div class="form-group">
+
+                {{ form.submit(class="btn btn-secondary")}}
+            </div>
+            
+            <div class="text-muted">
+                <a href="#">Forgot Password ?</a>
+            </div>
+
+        </form>
+    </div>
+  
+{% endblock content %}

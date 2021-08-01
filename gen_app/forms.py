@@ -37,3 +37,10 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email = email.data).first()
         if user:
             raise ValidationError('E-Mail Id already exists')
+
+# creating login form properties
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(),Email()])
+    password = PasswordField('Password', validators=[DataRequired(),Length(min=2,max=20)])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Login')

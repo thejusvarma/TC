@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% for data in datas %}
+<article class="media content-section">
+    {{ data.date_posted.strftime('%d-%m-%Y')}}
+    {{ data.roll_num }}   
+</article>
+{% endfor %}
+
+{% endblock content %}

@@ -33,8 +33,11 @@ def home():
             img.save(r'gen_app\static\saved\{}.pdf'.format('TC'))
 
             data = Issued.query.filter_by(roll_num=rn).first()
+            data2 = None
             if data:
-                flash(f'TC already Issued','danger')
+                data2 = User.query.filter_by(id=data.user_id).first()
+            if data2:
+                flash(f'TC already Issued by ','danger')
 
             return render_template('info.html',title='Student Info',rn=rn)
 

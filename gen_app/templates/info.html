@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
   <h1>TC</h1>
-  <a href="{{ url_for('return_tc',rn=rn) }}">Download</a>
-  
-  <a href="{{ url_for('return_conduct',rn=rn) }}">Download</a>
+  <a href="{{ url_for('return_tc',rn=rn) }}">Download TC</a>
+  <a href="{{ url_for('return_conduct',rn=rn) }}">Download Conduct</a>
 {% endblock content %}

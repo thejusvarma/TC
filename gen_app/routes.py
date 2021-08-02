@@ -11,13 +11,13 @@ from gen_app import app,db, bcrypt
 from gen_app.models import User,Issued
 from flask_login import login_user, current_user, logout_user, login_required
 
-access = ['thejusvarma11@gmail.com']
+# access = ['thejusvarma11@gmail.com','admin11@gmail.com']
 
+# home route
 @app.route('/')
 @app.route('/home',methods=['GET','POST'])
 @login_required
 def home():
-        
         form = rollnumform()
         form2 = uploadfile()
 
@@ -37,7 +37,7 @@ def home():
             if data:
                 data2 = User.query.filter_by(id=data.user_id).first()
             if data2:
-                flash(f'TC already Issued by ','danger')
+                flash(f"TC already Issued on {data.date_posted.strftime('%d-%m-%Y')} by {data2.username}",'danger')
 
             return render_template('info.html',title='Student Info',rn=rn)
 
@@ -50,15 +50,16 @@ def home():
 
         return render_template('home.html',title='home',form2=form2,form=form)
 
-
-@app.route('/return_tc/<string:rn>', methods=['GET','POST'])
+# TC return route
+@app.route('/return_tc/<string:rn>', methods=['GET'])
 def return_tc(rn):
     issue = Issued(roll_num = rn,author = current_user)
     db.session.add(issue)
     db.session.commit()
     return send_file(r'static\saved\TC.pdf',attachment_filename='TC.pdf')
 
-@app.route('/return_conduct/<string:rn>', methods=['GET','POST'])
+# conduct return route
+@app.route('/return_conduct/<string:rn>', methods=['GET'])
 def return_conduct(rn):
     data = Issued.query.filter_by(roll_num=rn).first()
     # issue = Issued(roll_num = rn,author = current_user)
@@ -68,21 +69,24 @@ def return_conduct(rn):
     #     flash(f'TC already Issued','danger')
     return send_file(r'static\saved\TC.pdf',attachment_filename='TC.pdf')
 
+# register route
 @app.route("/register",methods=['GET','POST'])
 @login_required
-def register():     
+def register():
     # making instance (form) of RegsitrationForm class made in forms.py
     form = RegistrationForm()
-
     # if content is validated then flashing message and updating data into database
     if form.validate_on_submit():
-        access.append(form.email.data)
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password = hashed_password)
-        db.session.add(user)
-        db.session.commit()
-        flash(f'Account created! Login Please','success')
-        return redirect(url_for('home'))
+        if form.email.data in access:
+            hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+            user = User(username=form.username.data, email=form.email.data, password = hashed_password)
+            db.session.add(user)
+            db.session.commit()
+            flash(f'Account created!','success')
+            return redirect(url_for('home'))
+        else:
+            flash(f'You are not an authorized user to register','danger')
+            return redirect(url_for('home'))
     return render_template('register.html',title='Register',form=form)
  
 # login route
@@ -91,17 +95,14 @@ def login():
     # checking user already logged in then he will be redirected to home route 
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-
     # making instance (form) of LoginForm class made in forms.py
     form = LoginForm()
-
     # checking if form is valid or not
     if form.validate_on_submit():
         # creating user variable
         user = User.query.filter_by(email=form.email.data).first()
         # upon log in if such user exists AND the password matches then login granted
-        
-        if user and user.email in access and bcrypt.check_password_hash(user.password, form.password.data):
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user,remember=form.remember.data)
             flash(f'Login successfull!','success')
             return redirect(url_for('home'))

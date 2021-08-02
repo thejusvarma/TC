@@ -27,7 +27,7 @@ def home():
             # data = df.loc('Team',dtype="object")
             # print(data)
             df = ['thej','dffd']
-            img  =  Image.open('gen_app\static\TC.jpg')
+            img  =  Image.open('app\gen_app\static\TC.jpg')
             draw = ImageDraw.Draw(img)
             draw.text(xy=(200,200),text='{}'.format(df[0]),fill=(0,0,0))
             img.save(r'app\gen_app\static\saved\{}.pdf'.format('TC'))

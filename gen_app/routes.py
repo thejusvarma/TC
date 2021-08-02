@@ -27,10 +27,10 @@ def home():
             # data = df.loc('Team',dtype="object")
             # print(data)
             df = ['thej','dffd']
-            img  =  Image.open('app\gen_app\static\TC.jpg')
+            img  =  Image.open('\app\gen_app\static\TC.jpg')
             draw = ImageDraw.Draw(img)
             draw.text(xy=(200,200),text='{}'.format(df[0]),fill=(0,0,0))
-            img.save(r'app\gen_app\static\saved\{}.pdf'.format('TC'))
+            img.save(r'\app\gen_app\static\saved\{}.pdf'.format('TC'))
 
             data = Issued.query.filter_by(roll_num=rn).first()
             data2 = None
@@ -44,7 +44,7 @@ def home():
         if form2.uploaded_file.data:
             # data = pd.read_excel(form2.uploaded_file)
             # filename = secure_filename(form2.uploaded_file.data['excel'].filename)
-            filepath = os.path.join(r'app\gen_app\static','excel.csv')
+            filepath = os.path.join(r'\app\gen_app\static','excel.csv')
             form2.uploaded_file.data.save(filepath)
             return render_template('home.html',title='home',form=form,form2=form2)
 
@@ -56,7 +56,7 @@ def return_tc(rn):
     issue = Issued(roll_num = rn,author = current_user)
     db.session.add(issue)
     db.session.commit()
-    return send_file(r'app\gen_app\static\saved\TC.pdf',attachment_filename='TC.pdf')
+    return send_file(r'\app\gen_app\static\saved\TC.pdf',attachment_filename='TC.pdf')
 
 # conduct return route
 @app.route('/return_conduct/<string:rn>', methods=['GET'])
@@ -67,7 +67,7 @@ def return_conduct(rn):
     # db.session.commit()
     # if data:
     #     flash(f'TC already Issued','danger')
-    return send_file(r'app\gen_app\static\saved\TC.pdf',attachment_filename='TC.pdf')
+    return send_file(r'\app\gen_app\static\saved\TC.pdf',attachment_filename='TC.pdf')
 
 # register route
 @app.route("/register",methods=['GET','POST'])

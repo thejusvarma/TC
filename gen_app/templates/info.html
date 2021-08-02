@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-  <h1>Heysdassa</h1>
-  <a href="/return-file" target="blank">Download</a>
+  <h1>TC</h1>
+  <a href="{{ url_for('return_tc',rn=rn) }}">Download</a>
+  
+  <a href="{{ url_for('return_conduct',rn=rn) }}">Download</a>
 {% endblock content %}

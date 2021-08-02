@@ -33,12 +33,10 @@ def home():
             img.save(r'gen_app\static\saved\{}.pdf'.format('TC'))
 
             data = Issued.query.filter_by(roll_num=rn).first()
-            issue = Issued(roll_num = rn,author = current_user)
-            db.session.add(issue)
-            db.session.commit()
             if data:
                 flash(f'TC already Issued','danger')
-            return render_template('info.html',title='Student Info',name=df[0])
+
+            return render_template('info.html',title='Student Info',rn=rn)
 
         if form2.uploaded_file.data:
             # data = pd.read_excel(form2.uploaded_file)
@@ -50,10 +48,22 @@ def home():
         return render_template('home.html',title='home',form2=form2,form=form)
 
 
-@app.route('/return-file/', methods=['GET', 'POST'])
-def file_download():
+@app.route('/return_tc/<string:rn>', methods=['GET','POST'])
+def return_tc(rn):
+    issue = Issued(roll_num = rn,author = current_user)
+    db.session.add(issue)
+    db.session.commit()
     return send_file(r'static\saved\TC.pdf',attachment_filename='TC.pdf')
 
+@app.route('/return_conduct/<string:rn>', methods=['GET','POST'])
+def return_conduct(rn):
+    data = Issued.query.filter_by(roll_num=rn).first()
+    # issue = Issued(roll_num = rn,author = current_user)
+    # db.session.add(issue)
+    # db.session.commit()
+    # if data:
+    #     flash(f'TC already Issued','danger')
+    return send_file(r'static\saved\TC.pdf',attachment_filename='TC.pdf')
 
 @app.route("/register",methods=['GET','POST'])
 @login_required

@@ -2,7 +2,7 @@
 # change app to development server -> $env:FLASK_ENV = "development" 
 # activate debugger -> set FLASK_DEBUG= 1 
 # command to run the app -> python -m flask run
-from gen_app.templates import app
+from gen_app import app
 
 if __name__ == "__main__":
   app.run()

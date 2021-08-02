@@ -31,6 +31,13 @@ def home():
             draw = ImageDraw.Draw(img)
             draw.text(xy=(200,200),text='{}'.format(df[0]),fill=(0,0,0))
             img.save(r'gen_app\static\saved\{}.pdf'.format('TC'))
+
+            data = Issued.query.filter_by(roll_num=rn).first()
+            issue = Issued(roll_num = rn,author = current_user)
+            db.session.add(issue)
+            db.session.commit()
+            if data:
+                flash(f'TC already Issued','danger')
             return render_template('info.html',title='Student Info',name=df[0])
 
         if form2.uploaded_file.data:
@@ -53,8 +60,10 @@ def file_download():
 def register():     
     # making instance (form) of RegsitrationForm class made in forms.py
     form = RegistrationForm()
+
     # if content is validated then flashing message and updating data into database
     if form.validate_on_submit():
+        access.append(form.email.data)
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, email=form.email.data, password = hashed_password)
         db.session.add(user)
@@ -83,8 +92,7 @@ def login():
             login_user(user,remember=form.remember.data)
             flash(f'Login successfull!','success')
             return redirect(url_for('home'))
-        
-        else:        
+        else:
             flash(f'Login Unsuccessfull! Please check your E-mail and password ','danger')
             
     return render_template('login.html',title='Login',form=form)

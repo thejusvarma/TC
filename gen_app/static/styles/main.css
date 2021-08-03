@@ -13,11 +13,14 @@ h1, h2, h3, h4, h5, h6 {
   color: #026670;
 }
 .bg-steel {
-  background-color: #026670  !important;
+    background: linear-gradient(40deg, #024b52, #257c7c);
 }
+
+
 
 .site-header .navbar-nav .nav-link {
   color: #FCE181;
+  font-size: large;
 }
 
 .site-header .navbar-nav .nav-link:hover {

@@ -8,7 +8,6 @@ from gen_app import app,db, bcrypt
 from gen_app.models import User,Issued
 from flask_login import login_user, current_user, logout_user, login_required
 import datetime
-# access = ['thejusvarma11@gmail.com','admin11@gmail.com']
 
 # home route
 @app.route('/')
@@ -133,12 +132,6 @@ def return_tc(rn):
 # conduct return route
 @app.route('/return_conduct/<string:rn>', methods=['GET'])
 def return_conduct(rn):
-    data = Issued.query.filter_by(roll_num=rn).first()
-    # issue = Issued(roll_num = rn,author = current_user)
-    # db.session.add(issue)
-    # db.session.commit()
-    # if data:
-    #     flash(f'TC already Issued','danger')
     return send_file(r'static\saved\conduct.pdf',attachment_filename='conduct.pdf')
 
 # register route
@@ -188,3 +181,8 @@ def logout():
 def issued():
     data = Issued.query.filter_by(user_id=current_user.id).all()
     return render_template('issue.html',title='Issued',datas=data)
+
+@app.route("/manual_generate")
+def manual_generate():
+    return render_template('manual_generate.html',title='Issued')
+

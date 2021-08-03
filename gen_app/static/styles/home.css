@@ -1,12 +1,65 @@
 .container-home{
-    width:50%;
+    width:60%;
+    margin-top: 8%;
+}
+hr.white {
+  border-top: 1px solid whitesmoke;
+
+}
+legend{
+    color: #FCE181;
+    margin-bottom: -10px;
+    font-weight: 500;
+}
+.container-form{
+    width: 45%;
+    height: 50%;
+    background: linear-gradient(40deg, #54c0c0, #024b52);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 50px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+  }
+
+.btn-dark{
+    background: linear-gradient(40deg, #024b52, #54c0c0);
+    border-color: #ffffff;
+    border-radius: 4px;
+    width: 20%;
 }
 
-.container-info{
-    width:50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10%;
-    background-color: #FCE181;
-    padding: 40px;
+.btn-dark:hover{
+    background: linear-gradient(40deg,#54c0c0, #024b52);
+    border-color: #ffffff;
+    border-radius: 4px;
+}
+
+
+.colour{
+    background: linear-gradient(10deg, #54c0c0, #024b52);
+    color: whitesmoke;
+    border: none;
+}
+
+.card{
+    
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);    margin-left: auto;
+}
+
+.btn-secondary{
+    background-color: #b99b2c;
+    width: 30%;
+    border-color: #b99b2c;
+    border-radius: 4px;
+}
+.btn-secondary:hover{
+    background-color: #d8bd47;
+    border-color: #d3ba4e;
+    color: black;
+}
+.align-text{
+    text-align: center;
 }

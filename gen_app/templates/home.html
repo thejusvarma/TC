@@ -5,29 +5,52 @@
 {% block content %}
     
 <div class="container container-home">
-    
-    
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Generate Certificates</legend>
-           <!-- {{ form.roll_num.label(class="form-group-label") }} -->
-            {{ form.roll_num(class="form-control",placeholder="Roll Number") }}<br>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-secondary")}}
-            </div>
-        </fieldset>
-    </form>
-    <form method="POST" action="" enctype="multipart/form-data">
-        {{ form2.hidden_tag() }}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Upload file</legend>
-            {{ form2.uploaded_file(class="form-control",placeholder="Upload File") }}<br>
-            <div class="form-group">
-                {{ form2.submit(class="btn btn-secondary")}}
-            </div>
-        </fieldset>
-    </form>
+
+    <div class="row">
+
+        <div class="container-form text-center">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend>Generate Certificates</legend>
+                    <hr class="white">
+                    <br>
+                    <!-- {{ form.roll_num.label(class="form-group-label") }} -->
+                    {{ form.roll_num(class="form-control",placeholder="Roll Number") }}<br>
+                    <div class="form-group">
+                        {{ form.submit(class="btn btn-secondary")}}
+                    </div>
+                </fieldset>
+            </form>
+        </div>    
+
+        <div class="container-form text-center">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form2.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend>Upload File</legend>
+                    <hr class="white">
+                    <br>
+                    {{ form2.uploaded_file(class="form-control colour",placeholder="Upload File") }}<br>
+                    <div class="form-group">
+                        {{ form2.submit(class="btn btn-secondary")}}
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Manual Certificate Generation</h5>
+                <p class="card-text">To manually generate certificates please proceed with the following button</p>
+            <a type="button" href="{{ url_for('manual_generate') }}" class="btn btn-dark">Generate</a>
+        </div>
+    </div>
+
 </div>
 
 {% endblock content %}

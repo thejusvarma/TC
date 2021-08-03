@@ -1,0 +1,23 @@
+.container-login{
+    width: 50%;
+    height: 50%;
+    background-color: #026670;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 50px;
+    border-radius: 5px;
+  }
+
+fieldset.border-bottom{
+    border-color: black;
+}
+
+.login-head{
+  font-size: 40px;
+  color:#FCE181;
+  font-weight: 400;
+}
+
+.div-email{
+  color:#FCE181;
+}

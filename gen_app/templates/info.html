@@ -1,10 +1,15 @@
 {% extends "layout.html" %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/home.css') }}">
+{% endblock head %}
 {% block content %}
-  <h1>TC</h1>
+<div class='container-info'>
+  <h4>Transfer Certficate:</h4>
 
   {% if rn %}
-  <a href="{{ url_for('return_tc',rn=rn) }}">Download TC</a>
-  <a href="{{ url_for('return_conduct',rn=rn) }}">Download Conduct</a>
+  <a href="{{ url_for('return_tc',rn=rn) }}">Download Transfer Certificate</a><br><br>
+  <h4>Conduct Certificate:</h4>
+  <a href="{{ url_for('return_conduct',rn=rn) }}">Download Conduct Certificate</a>
   {% endif %}
-
+</div>
 {% endblock content %}

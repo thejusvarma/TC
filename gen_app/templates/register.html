@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/issue.css') }}">
+{% endblock head %}
 {% block content %}
-    <div>
+    <div class='container-register'>
         <!-- register form -->
         <form method="POST" action="">
             {{ form.hidden_tag() }}

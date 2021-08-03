@@ -1,9 +1,10 @@
 body {
   /* background: #EDEAE5; */
-  background: rgb(192, 43, 43);
+  background: #DCDCDC;
   color: #333333;
   margin-top: 5rem;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
   color: #444444;

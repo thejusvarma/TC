@@ -1,0 +1,12 @@
+.container-home{
+    width:50%;
+}
+
+.container-info{
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    background-color: #FCE181;
+    padding: 40px;
+}

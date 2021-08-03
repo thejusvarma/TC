@@ -1,6 +1,6 @@
 .container-home{
     width:60%;
-    margin-top: 8%;
+    margin-top: 9%;
 }
 hr.white {
   border-top: 1px solid whitesmoke;
@@ -19,8 +19,8 @@ legend{
     margin-right: auto;
     padding-left: 40px;
     padding-right: 40px;
-    padding-top: 50px;
-    padding-bottom: 10px;
+    padding-top: 45px;
+    padding-bottom: 1px;
     border-radius: 5px;
   }
 
@@ -50,15 +50,14 @@ legend{
 }
 
 .btn-secondary{
-    background-color: #b99b2c;
+    background: linear-gradient(40deg, #bea443, #856d17);
     width: 30%;
-    border-color: #b99b2c;
+    border:none;
     border-radius: 4px;
 }
 .btn-secondary:hover{
-    background-color: #d8bd47;
-    border-color: #d3ba4e;
-    color: black;
+    background: linear-gradient(40deg, #856d17, #bea443);
+ 
 }
 .align-text{
     text-align: center;

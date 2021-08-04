@@ -1,6 +1,6 @@
 .container-home{
     width:60%;
-    margin-top: 9%;
+    margin-top: 8%;
 }
 hr.white {
   border-top: 1px solid whitesmoke;
@@ -12,7 +12,7 @@ legend{
     font-weight: 500;
 }
 .container-form{
-    width: 45%;
+    width: 46%;
     height: 50%;
     background: linear-gradient(40deg, #54c0c0, #024b52);
     box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);    margin-left: auto;
@@ -22,20 +22,7 @@ legend{
     padding-top: 45px;
     padding-bottom: 1px;
     border-radius: 5px;
-}
-
-.container-file{
-    width: 45%;
-    height: 50%;
-    background-color: white;
-    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);    margin-left: auto;
-    margin-right: auto;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 45px;
-    padding-bottom: 1px;
-    border-radius: 5px;
-}
+  }
 
 .btn-dark{
     background: linear-gradient(40deg, #024b52, #54c0c0);
@@ -52,11 +39,11 @@ legend{
 
 
 .colour{
+    background: linear-gradient(10deg, #54c0c0, #024b52);
     color: whitesmoke;
     border: none;
 }
-
-.card{
+.card{   
     box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);    margin-left: auto;
 }
 

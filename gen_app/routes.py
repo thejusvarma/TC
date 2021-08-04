@@ -17,10 +17,8 @@ def home():
         form = rollnumform()
         form2 = uploadfile()
 
-        if form.roll_num.data:
-            
+        if form.validate_on_submit():
             rn = form.roll_num.data
-         
             db_data1 = Issued.query.filter_by(roll_num=rn).first()
             db_data2 = None
             if db_data1:

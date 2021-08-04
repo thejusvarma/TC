@@ -3,8 +3,8 @@
     margin-top: 8%;
 }
 hr.white {
-  border-top: 1px solid whitesmoke;
-}
+    border-top:1px solid whitesmoke;
+    box-shadow: 0 4px 7px #FCE181;    margin-left: auto;}
 
 legend{
     color: #FCE181;
@@ -37,12 +37,15 @@ legend{
     border-radius: 4px;
 }
 
-
+.file-upload-button{
+    visibility:hidden;
+}
 .colour{
     background: linear-gradient(10deg, #54c0c0, #024b52);
     color: whitesmoke;
     border: none;
 }
+
 .card{   
     box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);    margin-left: auto;
 }

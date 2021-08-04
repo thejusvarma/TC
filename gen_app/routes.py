@@ -185,4 +185,3 @@ def issued():
 @app.route("/manual_generate")
 def manual_generate():
     return render_template('manual_generate.html',title='Issued')
-

@@ -44,3 +44,13 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(),Length(min=2,max=20)])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+class ManualForm(FlaskForm):
+    admission_number = StringField('Admission Number', validators=[DataRequired()])
+    roll_number = StringField('Roll Number', validators=[DataRequired()])
+    student_name = StringField('Student Name', validators=[DataRequired()])
+    father_name = StringField('Father Name', validators=[DataRequired()])
+    date_of_birth = StringField('Date of Birth', validators=[DataRequired()])
+    Name_of_course_and_branch = StringField('Course and Branch', validators=[DataRequired()])
+    community = StringField('Email', validators=[DataRequired()])
+    submit = SubmitField('Submit')

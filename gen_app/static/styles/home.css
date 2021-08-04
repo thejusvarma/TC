@@ -4,10 +4,10 @@
 }
 hr.white {
     border-top:1px solid whitesmoke;
-    box-shadow: 0 4px 7px #FCE181;    margin-left: auto;}
+    box-shadow: 0 4px 7px #ecc94b;    margin-left: auto;}
 
 legend{
-    color: #FCE181;
+    color: #ecc94b;
     margin-bottom: -10px;
     font-weight: 500;
 }

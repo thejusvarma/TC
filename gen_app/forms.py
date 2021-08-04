@@ -40,7 +40,7 @@ class LoginForm(FlaskForm):
 
 class ManualForm(FlaskForm):
     admission_number = StringField('Admission Number', validators=[DataRequired()])
-    roll_number = StringField('Roll Number', validators=[DataRequired()])
+    roll_num = StringField('Roll Number', validators=[DataRequired()])
     student_name = StringField('Student Name', validators=[DataRequired()])
     father_name = StringField('Father Name', validators=[DataRequired()])
     date_of_birth = StringField('Date of Birth', validators=[DataRequired()])

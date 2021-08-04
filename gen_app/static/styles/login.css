@@ -14,7 +14,7 @@
 
 hr.white {
     border-top: 1px solid whitesmoke;
-    box-shadow: 0 4px 7px #FCE181;    margin-left: auto;
+    box-shadow: 0 4px 7px #d1b44d;    margin-left: auto;
 }
 
 fieldset.border-bottom{
@@ -22,7 +22,7 @@ fieldset.border-bottom{
 }
 
 legend{
-  color: #FCE181;
+  color: #d1b44d;
   margin-bottom: -3px;
   font-weight: 500;
   font-size: 40px;

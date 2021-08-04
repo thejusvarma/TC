@@ -1,0 +1,46 @@
+.container-form{
+    width: 45%;
+    height: 40%;
+    background: linear-gradient(30deg, #54c0c0, #024b52);
+    box-shadow: 0 4px 7px rgba(0, 0.5, 0, 0.5);    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 42px;
+    padding-bottom: 18px;
+    border-radius: 5px;
+  }
+  
+  hr.white {
+      border-top: 1px solid whitesmoke;
+      box-shadow: 0 4px 7px #FCE181;    margin-left: auto;
+  }
+  
+  fieldset.border-bottom{
+      border-color: black;
+  }
+  
+  legend{
+    color: #ecc94b;
+    margin-bottom: -3px;
+    font-weight: 500;
+    font-size: 30px;
+  }
+  
+  .btn-secondary{
+    background: linear-gradient(40deg, #bea443, #856d17);
+    width: 20%;
+    border:none;
+    border-radius: 4px;
+  }
+  .btn-secondary:hover{
+    background: linear-gradient(40deg, #856d17, #bea443);
+  
+  }
+
+.form-group-label
+{
+    color: #ecc94b;
+}

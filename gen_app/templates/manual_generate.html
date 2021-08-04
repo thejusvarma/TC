@@ -1,8 +1,99 @@
-{% extends "layout.html" %}
+<!-- extending the primary layout of page from layout.html -->
+{% extends "layout.html" %}  
+
+<!-- running the following code in content block of layout.html -->
 {% block head %}
-<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/home.css') }}"> -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/manual_cert.css') }}">
 {% endblock head %}
 {% block content %}
-<h1>manual</h1>
+    <div class="container-form ">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="text-center">Student Details</legend>
+                <hr class="white">
+                <br>
+                <div class="form-group">
+                    {% if form.admission_number.errors %}
+                        {{ form.admission_number.label(class="form-group-label") }}
+                        {{ form.admission_number(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.admission_number.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.admission_number.label(class="form-group-label") }}
+                        {{ form.admission_number(class="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {% if form.roll_num.errors %}
+                        {{ form.roll_num.label(class="form-group-label") }}
+                        {{ form.roll_num(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.roll_num.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.roll_num.label(class="form-group-label") }}
+                        {{ form.roll_num(class="form-control") }}
+                    {% endif %}
+                </div>
 
+                <div class="form-group">
+                    {% if form.student_name.errors %}
+                        {{ form.student_name.label(class="form-group-label") }}
+                        {{ form.student_name(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.student_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.student_name.label(class="form-group-label") }}
+                        {{ form.student_name(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {% if form.father_name.errors %}
+                        {{ form.father_name.label(class="form-group-label") }}
+                        {{ form.father_name(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.father_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.father_name.label(class="form-group-label") }}
+                        {{ form.father_name(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {% if form.date_of_birth.errors %}
+                        {{ form.date_of_birth.label(class="form-group-label") }}
+                        {{ form.date_of_birth(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.date_of_birth.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.date_of_birth.label(class="form-group-label") }}
+                        {{ form.date_of_birth(class="form-control",placeholder="DD-MM-YYYY") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            
+            <div class="form-group text-center">
+                {{ form.submit(class="btn btn-secondary")}}
+            </div> 
+            
+
+        </form>
+    </div>
+  
 {% endblock content %}

@@ -1,6 +1,6 @@
 from flask import Flask, send_file,escape,render_template,url_for,flash,redirect, request, abort,send_file, send_from_directory, safe_join
 from numpy import nan
-from gen_app.forms import rollnumform, uploadfile, RegistrationForm, LoginForm
+from gen_app.forms import rollnumform, uploadfile, RegistrationForm, LoginForm, ManualForm
 from PIL import Image,ImageFont,ImageDraw
 import pandas as pd
 import os
@@ -182,4 +182,5 @@ def issued():
 
 @app.route("/manual_generate")
 def manual_generate():
-    return render_template('manual_generate.html',title='Issued')
+    form = ManualForm()
+    return render_template('manual_generate.html',title='Issued',form=form)

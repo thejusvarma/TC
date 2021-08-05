@@ -184,5 +184,6 @@ def issued():
 def manual_generate():
     form = ManualForm()
     if form.validate_on_submit():
-        return render_template('info.html',title='Issued',form=form)
+        # draw data here
+        return render_template('info.html',title='Issued',form=form, rn=form.roll_num)
     return render_template('manual_generate.html',title='Issued',form=form)

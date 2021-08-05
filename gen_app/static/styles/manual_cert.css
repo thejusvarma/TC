@@ -13,6 +13,12 @@
     border-radius: 5px;
   }
   
+/* 
+  .form-group{
+      margin-left: auto;
+    margin-right: auto;
+  } */
+
   hr.white {
       border-top: 1px solid whitesmoke;
       box-shadow: 0 4px 7px #FCE181;    margin-left: auto;

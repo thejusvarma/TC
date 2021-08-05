@@ -180,7 +180,9 @@ def issued():
     data = Issued.query.filter_by(user_id=current_user.id).all()
     return render_template('issue.html',title='Issued',datas=data)
 
-@app.route("/manual_generate")
+@app.route("/manual_generate",methods=['GET','POST'])
 def manual_generate():
     form = ManualForm()
+    if form.validate_on_submit():
+        return render_template('info.html',title='Issued',form=form)
     return render_template('manual_generate.html',title='Issued',form=form)

@@ -27,6 +27,13 @@ def home():
         data = df[index[3]]                                     #passing the coulmn key name to the df and passing whole coulmn to data
         data = list(data)                                       #turning it into list for easy access
         if rn in data:
+            db_data1 = Issued.query.filter_by(roll_num=rn).first()
+            db_data2 = None
+            if db_data1:
+                db_data2 = User.query.filter_by(id=db_data1.user_id).first()
+                if db_data2:
+                    flash(f"TC already Issued to {rn} on {db_data1.date_posted.strftime('%d-%m-%Y')} ",'danger')
+                    return render_template('info.html',title='Student Info',rn=rn)
             return render_template('info.html',title='Student Info',rn=rn)
         else:
             flash(f'Invalid Roll Number','danger')
@@ -195,7 +202,6 @@ def return_tc_original(rn):
     draw.text(xy=(551,951),text='{}'.format(identification),fill=(0,0,0), font = font)
     draw.text(xy=(420,1027),text='{}'.format(general_remarks),fill=(0,0,0), font = font)
     img.save(r'gen_app\static\saved\TC.pdf') 
-
     db_data = Issued.query.filter_by(roll_num=rn).first()
     if db_data:
         return send_file(r'static\saved\TC.pdf',attachment_filename='TC.pdf')

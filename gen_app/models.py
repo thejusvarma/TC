@@ -1,7 +1,7 @@
 from datetime import datetime
 from gen_app import db,login_manager
 from flask_login import UserMixin
-
+import pytz
 
 @login_manager.user_loader 
 def load_user(user_id):
@@ -16,11 +16,12 @@ class User(db.Model,UserMixin):
     def __repr__(self):
         return f"User('{self.username}','{self.email}')"
 
-# creating posts table
+# creating Issued table
 class Issued(db.Model):
+    IST = pytz.timezone('Asia/Kolkata')
     id = db.Column(db.Integer,primary_key=True)
     roll_num = db.Column(db.String(100), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
+    date_posted = db.Column(db.DateTime, nullable=False,default=datetime.now(IST))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False)
     def __repr__(self):
         return f"Issued('{self.user_id}','{self.roll_num}','{self.date_posted}')" 

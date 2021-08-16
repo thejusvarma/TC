@@ -1,0 +1,58 @@
+.table {
+    border-spacing: 0;
+    margin: 1rem;
+    background-color: #f5f5f5;
+}
+.table_row:nth-child(even){
+    background-color: #e5e5e5;
+}
+.table_header{
+    text-align: left;
+}
+.table_cell{
+    padding: 8px;
+}
+
+.scrollspy{
+float:left;
+width:100%;
+overflow-y: auto;
+height: 500px;
+}
+
+.btn-dark{
+    background: linear-gradient(40deg, #024b52, #54c0c0);
+    border-color: #ffffff;
+    border-radius: 4px;
+    width: 18%;
+}
+
+.btn-dark:hover{
+    background: linear-gradient(40deg,#54c0c0, #024b52);
+    border-color: #ffffff;
+    border-radius: 4px;
+}
+
+.btn-danger{
+    background: linear-gradient(40deg, #f34242, #ff0000);
+    border-color: #ffffff;
+    border-radius: 4px;
+    width: 50px;
+}
+
+.btn-danger:hover{
+    background: linear-gradient(40deg,#ff0000, #f34242);
+    border-color: #ffffff;
+    border-radius: 4px;
+}
+
+.btn-info{
+    background: linear-gradient(40deg, #39aa39, #1da111);
+    width: 100px;
+    border:none;
+    border-radius: 4px;
+}
+
+.btn-info:hover{
+    background: linear-gradient(40deg, #1da111, #3ba73b);
+}

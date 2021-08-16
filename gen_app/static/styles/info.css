@@ -1,7 +1,7 @@
 .container-info{
     width: 60%;
     height: 60%;
-    background: linear-gradient(30deg, #54c0c0, #024b52);
+    background: linear-gradient(70deg, #1b7272, #023135);
     box-shadow: 0 4px 7px rgba(0, 0, 0, 0.5);    margin-left: auto;
     margin-right: auto;
     margin-top: 150px;
@@ -14,7 +14,7 @@
 
 .btn-primary{
     background: linear-gradient(40deg, #bea443, #856d17);
-    width: 120px;
+    width: fit-content;
     border:none;
     border-radius: 4px;
 }
@@ -22,3 +22,46 @@
 .btn-primary:hover{
     background: linear-gradient(40deg, #856d17, #bea443);
 }
+
+.btn-danger{
+    background: linear-gradient(40deg, #f34242, #ff0000);
+    border-color: #ffffff;
+    border-radius: 4px;
+    width: 50px;
+}
+
+.btn-danger:hover{
+    background: linear-gradient(40deg,#ff0000, #f34242);
+    border-color: #ffffff;
+    border-radius: 4px;
+}
+
+.btn-info{
+    background: linear-gradient(40deg, #39aa39, #1da111);
+    width: 100px;
+    border:none;
+    border-radius: 4px;
+}
+
+.btn-info:hover{
+    background: linear-gradient(40deg, #1da111, #3ba73b);
+}
+
+
+.clicker {
+    width:100px;
+    height:100px;
+    background-color:blue;
+    outline:none;
+    cursor:pointer;
+    }
+    
+.hiddendiv{
+    display:none;
+    height:200px;
+    background-color:green;
+    }
+    
+.clicker:focus + .hiddendiv{
+    display:block;
+    }

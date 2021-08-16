@@ -45,22 +45,24 @@
     </nav>
   </header>
 
-  {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-      {% for category, message in messages %}
-      <div class="container-flash text-center">
-        <div class="alert alert-{{ category }}">
-          {{ message }}
-        </div>
+  
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="container-flash text-center">
+      <div class="alert alert-{{ category }}">
+        {{ message }}
       </div>
-      {% endfor %}
-  {% endif %}
-  {% endwith %}
-  {% block head %}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {% block head %}
+
 
   {% endblock %}
-            <!-- making a content block -->
-            {% block content %}
-            {% endblock %}
+  <!-- making a content block -->
+  {% block content %}
+  {% endblock %}
 </body>
 </html>

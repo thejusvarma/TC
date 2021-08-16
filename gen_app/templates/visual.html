@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/visual.css') }}">
+{% endblock head %}
+{% block content %}
+<div class="col">
+
+    <div class="scrollspy">
+        <table class = 'table'>
+            <tr class = table_header>
+                {% for head in headings %}
+                <th class = "table_cell">
+                    {{head}}
+                </th>
+                {% endfor %}
+            </tr>
+            {%for row in dataframe%}
+            <tr class = "table_row">
+                {%for cell in row%}
+                <td class = "table_cell">{{cell}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- modal trigger link -->
+    <div class="text-center">  
+    <a class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Add file to main excel file</a>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">WARNING </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to append this file, the data will be reflected in the database.
+          </div>
+          <div class="modal-footer text-center">
+            <div class="col-sm-3">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+            </div>
+            <div class="col-sm-7">
+              <a href="{{ url_for('append_file') }}" class="btn btn-info">Yes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+{% endblock content %}

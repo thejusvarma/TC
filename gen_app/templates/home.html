@@ -6,6 +6,14 @@
     
 <div class="container container-home">
 
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">Manual Certificate Generation</h5>
+            <p class="card-text">To manually generate certificates please proceed with the following button</p>
+            <a type="button" href="{{ url_for('manual_generate') }}" class="btn btn-dark">Generate</a>
+        </div>
+    </div>
+    <br>
     <div class="row">
 
         <div class="container-form text-center">
@@ -14,7 +22,6 @@
                 <fieldset class="form-group">
                     <legend>Generate Certificates</legend>
                     <hr class="white">
-                    <br>
                     {{ form.roll_num(class="form-control",placeholder="Roll Number") }}<br>
                     <div class="form-group">
                         {{ form.submit(class="btn btn-secondary")}}
@@ -27,9 +34,25 @@
             <form method="POST" action="" enctype="multipart/form-data">
                 {{ form2.hidden_tag() }}
                 <fieldset class="form-group">
-                    <legend>Upload file</legend>
+                    <legend>Append File</legend>
                     <hr class="white">
-                    <br>
+                    {{ form3.append_file(class="form-control colour ",placeholder="Append File") }}<br>
+                    <div class="form-group">
+                    {{ form3.submit(class="btn btn-secondary",id="liveToastBtn")}}
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <br>
+
+    <div class="text-center">
+        <div class="container-form text-center">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form2.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend>Upload Main File</legend>
+                    <hr class="white">
                     {{ form2.uploaded_file(class="form-control colour ",placeholder="Upload File") }}<br>
                     <div class="form-group">
                     {{ form2.submit(class="btn btn-secondary",id="liveToastBtn")}}
@@ -37,30 +60,6 @@
                 </fieldset>
             </form>
         </div>
-
     </div>
-    <br>
-    <br>
-    <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">Manual Certificate Generation</h5>
-                <p class="card-text">To manually generate certificates please proceed with the following button</p>
-            <a type="button" href="{{ url_for('manual_generate') }}" class="btn btn-dark">Generate</a>
-        </div>
-    </div>
-
-</div>
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <img src="..." class="rounded me-2" alt="...">
-      <strong class="me-auto">Bootstrap</strong>
-      <small>11 mins ago</small>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-    <div class="toast-body">
-      Hello, world! This is a toast message.
-    </div>
-  </div>
 </div>
 {% endblock content %}

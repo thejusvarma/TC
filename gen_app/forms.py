@@ -7,12 +7,16 @@ from gen_app.models import User
 import pandas as pd
 
 
-class rollnumform(FlaskForm):
+class RollNumForm(FlaskForm):
     roll_num = StringField('Roll Number', validators=[DataRequired()])
     submit = SubmitField('Check')
 
-class uploadfile(FlaskForm):
-    uploaded_file = FileField('Upload File',validators=[DataRequired(),FileAllowed(['xlsx'])])
+class UploadForm(FlaskForm):
+    uploaded_file = FileField('Upload File',validators=[DataRequired(),FileAllowed(['csv'])])
+    submit = SubmitField('Submit')
+
+class AppendFile(FlaskForm):
+    append_file = FileField('Upload Append File',validators=[DataRequired(),FileAllowed(['csv'])])
     submit = SubmitField('Submit')
 
 class RegistrationForm(FlaskForm):
@@ -46,6 +50,7 @@ class ManualForm(FlaskForm):
     date_of_birth = StringField('Date of Birth', validators=[DataRequired()])
     date_of_admission =  StringField('Date of Admission')
     Name_of_course_and_branch = StringField('Course and Branch', validators=[DataRequired()])
+    Year_and_month_of_passing = StringField('Year and month of passing')
     community = StringField('Community', validators=[DataRequired()])
     promotion =  StringField('Promotion')
     conduct =  StringField('Conduct')

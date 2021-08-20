@@ -85,9 +85,10 @@ def return_tc_preview(rn):
     today = today.strftime('%d-%m-%Y')
     img  =  Image.open('gen_app\static\TC.jpg')
     date_of_leaving = datetime.date.today()
+    date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("arial.ttf", 21)    
-    admission_no = w[2]
+    admission_no = int(w[2])
     roll_number = w[3]
     name = w[4]
     father_name = w[5]
@@ -114,12 +115,12 @@ def return_tc_preview(rn):
     draw.text(xy=(1300,889),text='{}'.format(community),fill=(0,0,0), font = font)
     draw.text(xy=(1320,932),text='{}'.format(identification),fill=(0,0,0), font = font)
     draw.text(xy=(1300,1008),text='{}'.format(general_remarks),fill=(0,0,0), font = font)
-    draw.text(xy=(709,299),text='{}'.format(today),fill=(0,0,0), font = font)
-    draw.text(xy=(1760,335),text='{}'.format(today),fill=(0,0,0), font = font)
+    draw.text(xy=(630,299),text='{}'.format(today),fill=(0,0,0), font = font)
+    draw.text(xy=(1695,335),text='{}'.format(today),fill=(0,0,0), font = font)
     draw.text(xy=(650,362),text='{}'.format(roll_number),fill=(0,0,0), font = font)
     draw.text(xy=(1716,370),text='{}'.format(roll_number),fill=(0,0,0), font = font)
     draw.text(xy=(1057,370),text='{}'.format(admission_no),fill=(0,0,0), font = font)
-    draw.text(xy=(325,362),text='{}'.format(admission_no),fill=(0,0,0), font = font)    
+    draw.text(xy=(325,362),text='{}'.format(admission_no),fill=(0,0,0), font = font)
     draw.text(xy=(280,445),text='{}'.format(name),fill=(0,0,0), font = font)
     draw.text(xy=(420,489),text='{}'.format(father_name),fill=(0,0,0), font = font)
     draw.text(xy=(420,533),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
@@ -153,9 +154,10 @@ def return_tc_original(rn):
     today = today.strftime('%d-%m-%Y')
     img  =  Image.open('gen_app\static\TC.jpg')
     date_of_leaving = datetime.date.today()
+    date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("arial.ttf", 21)    
-    admission_no = w[2]
+    admission_no = int(w[2])
     roll_number = w[3]
     name = w[4]
     father_name = w[5]
@@ -182,12 +184,13 @@ def return_tc_original(rn):
     draw.text(xy=(1300,889),text='{}'.format(community),fill=(0,0,0), font = font)
     draw.text(xy=(1320,932),text='{}'.format(identification),fill=(0,0,0), font = font)
     draw.text(xy=(1300,1008),text='{}'.format(general_remarks),fill=(0,0,0), font = font)
-    draw.text(xy=(709,299),text='{}'.format(today),fill=(0,0,0), font = font)
-    draw.text(xy=(1760,335),text='{}'.format(today),fill=(0,0,0), font = font)
+    draw.text(xy=(630,299),text='{}'.format(today),fill=(0,0,0), font = font)
+    draw.text(xy=(1695,335),text='{}'.format(today),fill=(0,0,0), font = font)
     draw.text(xy=(650,362),text='{}'.format(roll_number),fill=(0,0,0), font = font)
     draw.text(xy=(1716,370),text='{}'.format(roll_number),fill=(0,0,0), font = font)
     draw.text(xy=(1057,370),text='{}'.format(admission_no),fill=(0,0,0), font = font)
-    draw.text(xy=(325,362),text='{}'.format(admission_no),fill=(0,0,0), font = font)    
+    draw.text(xy=(325,362),text='{}'.format(admission_no),fill=(0,0,0), font = font)
+
     draw.text(xy=(280,445),text='{}'.format(name),fill=(0,0,0), font = font)
     draw.text(xy=(420,489),text='{}'.format(father_name),fill=(0,0,0), font = font)
     draw.text(xy=(420,533),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
@@ -201,7 +204,7 @@ def return_tc_original(rn):
     draw.text(xy=(420,908),text='{}'.format(community),fill=(0,0,0), font = font)
     draw.text(xy=(551,951),text='{}'.format(identification),fill=(0,0,0), font = font)
     draw.text(xy=(420,1027),text='{}'.format(general_remarks),fill=(0,0,0), font = font)
-    img.save(r'gen_app\static\saved\TC.pdf') 
+    img.save(r'gen_app\static\saved\TC.pdf')
     db_data = Issued.query.filter_by(roll_num=rn).first()
     if db_data:
         return send_file(r'static\saved\TC.pdf',attachment_filename='TC.pdf')
@@ -228,9 +231,10 @@ def return_tc_duplicate(rn):
     today = today.strftime('%d-%m-%Y')
     img  =  Image.open('gen_app\static\TC_dup.jpg')
     date_of_leaving = datetime.date.today()
+    date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("arial.ttf", 21)    
-    admission_no = w[2]
+    admission_no = int(w[2])
     roll_number = w[3]
     name = w[4]
     father_name = w[5]
@@ -257,12 +261,13 @@ def return_tc_duplicate(rn):
     draw.text(xy=(1300,889),text='{}'.format(community),fill=(0,0,0), font = font)
     draw.text(xy=(1320,932),text='{}'.format(identification),fill=(0,0,0), font = font)
     draw.text(xy=(1300,1008),text='{}'.format(general_remarks),fill=(0,0,0), font = font)
-    draw.text(xy=(709,299),text='{}'.format(today),fill=(0,0,0), font = font)
-    draw.text(xy=(1760,335),text='{}'.format(today),fill=(0,0,0), font = font)
+    draw.text(xy=(630,299),text='{}'.format(today),fill=(0,0,0), font = font)
+    draw.text(xy=(1695,335),text='{}'.format(today),fill=(0,0,0), font = font)
     draw.text(xy=(650,362),text='{}'.format(roll_number),fill=(0,0,0), font = font)
     draw.text(xy=(1716,370),text='{}'.format(roll_number),fill=(0,0,0), font = font)
     draw.text(xy=(1057,370),text='{}'.format(admission_no),fill=(0,0,0), font = font)
-    draw.text(xy=(325,362),text='{}'.format(admission_no),fill=(0,0,0), font = font)    
+    draw.text(xy=(325,362),text='{}'.format(admission_no),fill=(0,0,0), font = font)
+
     draw.text(xy=(280,445),text='{}'.format(name),fill=(0,0,0), font = font)
     draw.text(xy=(420,489),text='{}'.format(father_name),fill=(0,0,0), font = font)
     draw.text(xy=(420,533),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
@@ -284,61 +289,66 @@ def return_tc_duplicate(rn):
 @app.route('/return_conduct/<string:rn>', methods=['GET'])
 @login_required
 def return_conduct(rn):
-    # df = pd.read_csv('gen_app\static\excel.csv')
-    # index = df.keys()                                       #getting the coulmn names
-    # index = list(index)                                        #turning it into list to make access easy 
-    # data = df[index[3]]                                     #passing the coulmn key name to the df and passing whole coulmn to data
-    # data = list(data)                                       #turning it into list for easy access
-    # idx = data.index(rn)                                  #idx gives the index of the roll number entered in the array and we use it to find row
-    # a = df.iloc[[idx]]                                        #using ilot to find one specific row which will later be found and passed fro the search function 
-    # q = a.values                                            #a is storing the data that is then turned into a np array which has all elements in one single element
-    # w = q[0]                                                #q was a arry of arry and now we turn w into a single array and use it 
-    # today = datetime.date.today()
-    # today = today.strftime('%d-%m-%Y')
-    # img  =  Image.open('gen_app\static\TC.jpg')
-    # date_of_leaving = datetime.date.today()
-    # draw = ImageDraw.Draw(img)
-    # font = ImageFont.truetype("arial.ttf", 21)    
-    # admission_no = w[2]
-    # roll_number = w[3]
-    # name = w[4]
-    # father_name = w[5]
-    # date_of_birth = w[6]
-    # community = w[7]
-    # date_of_admission = w[8]
-    # course_and_branch = w[9]
-    # promotion = w[11]
-    # month_pass = w[12]
-    # conduct = w[13]
-    # identification = w[14]
-    # general_remarks = w[15]
-    # academic_year = w[16] 
-    # img1  =  Image.open('gen_app\static\conduct.jpg')
-    # draw1 = ImageDraw.Draw(img1)
-    # font = ImageFont.truetype("arial.ttf", 23)
-    # font1 = ImageFont.truetype("arial.ttf", 16)
-    # draw1.text(xy=(1090,542),text='{}'.format(w[4]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(365,505),text='{}'.format(w[4]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(863,650),text='{}'.format(w[3]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(1694,336),text='{}'.format(w[3]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(509,312),text='{}'.format(w[3]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(138,621),text='{}'.format(w[3]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(127,659),text='{}'.format(w[5]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(1238,650),text='{}'.format(w[5]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(44,775),text='{}'.format(w[9]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(1246,758),text='{}'.format(w[9]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(995,866),text='{}'.format(w[16]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(70,853),text='{}'.format(w[16]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(217,969),text='{}'.format(w[13]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(900,972),text='{}'.format(w[13]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(172,311),text='{}'.format(w[2]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(912,336),text='{}'.format(w[2]),fill=(0,0,0), font = font)
-    # draw1.text(xy=(1740,296),text='{}'.format(today),fill=(0,0,0), font = font)
-    # draw1.text(xy=(566,249),text='{}'.format(today),fill=(0,0,0), font = font1)
-    # img1.save(r'gen_app\static\saved\conduct.pdf')
-    # return render_template('info',title='Student Info',rn=rn)
+    df = pd.read_csv('gen_app\static\excel.csv')
+    index = df.keys()                                       #getting the coulmn names
+    index = list(index)                                        #turning it into list to make access easy 
+    data = df[index[3]]                                     #passing the coulmn key name to the df and passing whole coulmn to data
+    data = list(data)                                       #turning it into list for easy access
+    idx = data.index(rn)                                  #idx gives the index of the roll number entered in the array and we use it to find row
+    a = df.iloc[[idx]]                                        #using ilot to find one specific row which will later be found and passed fro the search function 
+    q = a.values                                            #a is storing the data that is then turned into a np array which has all elements in one single element
+    w = q[0]                                                #q was a arry of arry and now we turn w into a single array and use it 
+    today = datetime.date.today()
+    today = today.strftime('%d-%m-%Y')
+    img  =  Image.open('gen_app\static\TC.jpg')
+    date_of_leaving = datetime.date.today()
+    date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype("arial.ttf", 21)    
+    admission_no = int(w[2])
+    roll_number = w[3]
+    name = w[4]
+    father_name = w[5]
+    date_of_birth = w[6]
+    community = w[7]
+    date_of_admission = w[8]
+    course_and_branch = w[9]
+    promotion = w[11]
+    month_pass = w[12]
+    conduct = w[13]
+    identification = w[14]
+    general_remarks = w[15]
+    academic_year = w[16] 
+    img1  =  Image.open('gen_app\static\conduct.jpg')
+    draw1 = ImageDraw.Draw(img1)
+    font = ImageFont.truetype("arial.ttf", 28)
+    font1 = ImageFont.truetype("arial.ttf", 24)
+    if len(name) >= 30:
+        draw1.text(xy=(1380,610),text='{}'.format(name),fill=(0,0,0), font = font1)
+    else:
+        draw1.text(xy=(1380,605),text='{}'.format(name),fill=(0,0,0), font = font)
+    if len(father_name) >= 26:
+        draw1.text(xy=(1050,686),text='{}'.format(father_name),fill=(0,0,0), font = font1)
+    else:
+        draw1.text(xy=(1050,686),text='{}'.format(father_name),fill=(0,0,0), font = font)
+    draw1.text(xy=(1620,686),text='{}'.format(roll_number),fill=(0,0,0), font = font)
+    draw1.text(xy=(1465,770),text='{}'.format(course_and_branch),fill=(0,0,0), font = font1)
+    draw1.text(xy=(1285,845),text='{}'.format(academic_year),fill=(0,0,0), font = font)
+    draw1.text(xy=(1705,927),text='{}'.format(conduct),fill=(0,0,0), font = font)
+    draw1.text(xy=(630,299),text='{}'.format(today),fill=(0,0,0), font = font1)
+    draw1.text(xy=(1700,335),text='{}'.format(today),fill=(0,0,0), font = font1)
+    draw1.text(xy=(655,362),text='{}'.format(roll_number),fill=(0,0,0), font = font1)
+    draw1.text(xy=(1716,370),text='{}'.format(roll_number),fill=(0,0,0), font = font1)
+    draw1.text(xy=(1057,370),text='{}'.format(admission_no),fill=(0,0,0), font = font1)
+    draw1.text(xy=(325,362),text='{}'.format(admission_no),fill=(0,0,0), font = font1)
+    draw1.text(xy=(185,660),text='{}'.format(name),fill=(0,0,0), font = font1)
+    draw1.text(xy=(270,720),text='{}'.format(father_name),fill=(0,0,0), font = font1)
+    draw1.text(xy=(272,785),text='{}'.format(roll_number),fill=(0,0,0), font = font1)
+    draw1.text(xy=(375,846),text='{}'.format(course_and_branch),fill=(0,0,0), font = font1)
+    draw1.text(xy=(440,905),text='{}'.format(academic_year),fill=(0,0,0), font = font1)
+    draw1.text(xy=(338,1025),text='{}'.format(conduct),fill=(0,0,0), font = font1)
+    img1.save(r'gen_app\static\saved\conduct.pdf')
     return send_file(r'static\saved\conduct.pdf',attachment_filename='conduct.pdf')
-
 
 
 # register route
@@ -420,6 +430,7 @@ def edit_tc(rn):
         today = today.strftime('%d-%m-%Y')
         img  =  Image.open('gen_app\static\TC.jpg')
         date_of_leaving = datetime.date.today()
+        date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype("arial.ttf", 21)    
         form.admission_number.data = int(w[2])

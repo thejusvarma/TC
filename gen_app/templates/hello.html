@@ -1,5 +1,65 @@
 {% extends "layout.html" %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/home.css') }}">
+{% endblock head %}
 {% block content %}
     
-<h1>Hello</h1>
+<div class="container container-home">
+
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">Manual Certificate Generation</h5>
+            <p class="card-text">To manually generate certificates please proceed with the following button</p>
+            <a type="button" href="{{ url_for('manual_generate') }}" class="btn btn-dark">Generate</a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+
+        <div class="container-form text-center">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend>Generate Certificates</legend>
+                    <hr class="white">
+                    {{ form.roll_num(class="form-control",placeholder="Roll Number") }}<br>
+                    <div class="form-group">
+                        {{ form.submit(class="btn btn-secondary")}}
+                    </div>
+                </fieldset>
+            </form>
+        </div>    
+
+        <div class="container-form text-center">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form2.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend>Append File</legend>
+                    <hr class="white">
+                    {{ form3.append_file(class="form-control colour ",placeholder="Append File") }}<br>
+                    <div class="form-group">
+                    {{ form3.submit(class="btn btn-secondary",id="liveToastBtn")}}
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <br>
+
+    <div class="text-center">
+        <div class="container-form text-center">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form2.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend>Upload Main File</legend>
+                    <hr class="white">
+                    {{ form2.uploaded_file(class="form-control colour ",placeholder="Upload File") }}<br>
+                    <div class="form-group">
+                    {{ form2.submit(class="btn btn-secondary",id="liveToastBtn")}}
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}

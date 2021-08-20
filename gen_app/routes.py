@@ -15,15 +15,15 @@ import csv
 @app.route('/home',methods=['GET','POST'])
 @login_required
 def home():
-    form = RollNumForm()
-    form2 = UploadForm()
-    form3 = AppendFile()
+        form = rollnumform()
+        form2 = uploadfile()
+        form3 = AppendFile()
 
-    if form.validate_on_submit():
+        if form.validate_on_submit():
         rn = form.roll_num.data
-        df = pd.read_csv('gen_app\static\excel.csv')
+        df = pd.read_csv('/gen_app/static/excel.csv')
         index = df.keys()                                       #getting the coulmn names
-        index = list(index)                                        #turning it into list to make access easy 
+        index = list(index)                                     #turning it into list to make access easy 
         data = df[index[3]]                                     #passing the coulmn key name to the df and passing whole coulmn to data
         data = list(data)                                       #turning it into list for easy access
         if rn in data:
@@ -40,14 +40,14 @@ def home():
             return redirect(url_for('home'))
 
     if form2.validate_on_submit():
-        filepath = os.path.join(r'gen_app\static','excel.csv')
+        filepath = os.path.join(r'/gen_app/static','excel.csv')
         form2.uploaded_file.data.save(filepath)
         return redirect(url_for('home'))
 
     if form3.validate_on_submit():
-        filepath = os.path.join(r'gen_app\static','excel_append.csv')
+        filepath = os.path.join(r'/gen_app/static','excel_append.csv')
         form3.append_file.data.save(filepath)
-        dataframe = pd.read_csv('gen_app\static\excel_append.csv')
+        dataframe = pd.read_csv('/gen_app/static/excel_append.csv')
         index = dataframe.keys()                                       
         index = list(index)
         dataframe = dataframe.values.tolist()
@@ -58,9 +58,9 @@ def home():
 @app.route("/append_file")
 @login_required
 def append_file():
-    with open('gen_app\static\excel_append.csv','r') as new_info:
+    with open('/gen_app/static/excel_append.csv','r') as new_info:
         reader = csv.reader(new_info)
-        with open('gen_app\static\excel.csv','a', newline='', encoding='utf-8') as info:
+        with open('/gen_app/static/excel.csv','a', newline='', encoding='utf-8') as info:
             append = csv.writer(info)
             next(reader)
             for i in reader:
@@ -72,7 +72,7 @@ def append_file():
 @app.route('/return_tc_preview/<string:rn>', methods=['GET'])
 @login_required
 def return_tc_preview(rn):
-    df = pd.read_csv('gen_app\static\excel.csv')
+    df = pd.read_csv('/gen_app/static/excel.csv')
     index = df.keys()                                       #getting the coulmn names
     index = list(index)                                        #turning it into list to make access easy 
     data = df[index[3]]                                     #passing the coulmn key name to the df and passing whole coulmn to data
@@ -83,7 +83,7 @@ def return_tc_preview(rn):
     w = q[0]                                                #q was a arry of arry and now we turn w into a single array and use it 
     today = datetime.date.today()
     today = today.strftime('%d-%m-%Y')
-    img  =  Image.open('gen_app\static\TC.jpg')
+    img  =  Image.open('/gen_app/static/TC.jpg')
     date_of_leaving = datetime.date.today()
     date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
@@ -134,14 +134,14 @@ def return_tc_preview(rn):
     draw.text(xy=(420,908),text='{}'.format(community),fill=(0,0,0), font = font)
     draw.text(xy=(551,951),text='{}'.format(identification),fill=(0,0,0), font = font)
     draw.text(xy=(420,1027),text='{}'.format(general_remarks),fill=(0,0,0), font = font)
-    img.save(r'gen_app\static\saved\TC.pdf')
-    return send_file(r'static\saved\TC.pdf',attachment_filename='TC.pdf')
+    img.save(r'/gen_app/static/saved/TC.pdf')
+    return send_file(r'/static/saved/TC.pdf',attachment_filename='TC.pdf')
 
 # Return original TC route
 @app.route('/return_tc_original/<string:rn>', methods=['GET'])
 @login_required
 def return_tc_original(rn):
-    df = pd.read_csv('gen_app\static\excel.csv')
+    df = pd.read_csv('/gen_app/static/excel.csv')
     index = df.keys()                                       #getting the coulmn names
     index = list(index)                                        #turning it into list to make access easy 
     data = df[index[3]]                                     #passing the coulmn key name to the df and passing whole coulmn to data
@@ -152,7 +152,7 @@ def return_tc_original(rn):
     w = q[0]                                                #q was a arry of arry and now we turn w into a single array and use it 
     today = datetime.date.today()
     today = today.strftime('%d-%m-%Y')
-    img  =  Image.open('gen_app\static\TC.jpg')
+    img  =  Image.open('/gen_app/static/TC.jpg')
     date_of_leaving = datetime.date.today()
     date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
@@ -204,21 +204,21 @@ def return_tc_original(rn):
     draw.text(xy=(420,908),text='{}'.format(community),fill=(0,0,0), font = font)
     draw.text(xy=(551,951),text='{}'.format(identification),fill=(0,0,0), font = font)
     draw.text(xy=(420,1027),text='{}'.format(general_remarks),fill=(0,0,0), font = font)
-    img.save(r'gen_app\static\saved\TC.pdf')
+    img.save(r'/gen_app/static/saved/TC.pdf')
     db_data = Issued.query.filter_by(roll_num=rn).first()
     if db_data:
-        return send_file(r'static\saved\TC.pdf',attachment_filename='TC.pdf')
+        return send_file(r'/static/saved/TC.pdf',attachment_filename='TC.pdf')
     else:
         issue = Issued(roll_num = rn,author = current_user)
         db.session.add(issue)
         db.session.commit()
-        return send_file(r'static\saved\TC.pdf',attachment_filename='TC.pdf')
+        return send_file(r'/static/saved/TC.pdf',attachment_filename='TC.pdf')
 
 # return duplicate TC
 @app.route('/return_tc_duplicate/<string:rn>', methods=['GET'])
 @login_required
 def return_tc_duplicate(rn):
-    df = pd.read_csv('gen_app\static\excel.csv')
+    df = pd.read_csv('/gen_app/static/excel.csv')
     index = df.keys()                                       #getting the coulmn names
     index = list(index)                                        #turning it into list to make access easy 
     data = df[index[3]]                                     #passing the coulmn key name to the df and passing whole coulmn to data
@@ -229,7 +229,7 @@ def return_tc_duplicate(rn):
     w = q[0]                                                #q was a arry of arry and now we turn w into a single array and use it 
     today = datetime.date.today()
     today = today.strftime('%d-%m-%Y')
-    img  =  Image.open('gen_app\static\TC_dup.jpg')
+    img  =  Image.open('/gen_app/static/TC_dup.jpg')
     date_of_leaving = datetime.date.today()
     date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
@@ -281,15 +281,15 @@ def return_tc_duplicate(rn):
     draw.text(xy=(420,908),text='{}'.format(community),fill=(0,0,0), font = font)
     draw.text(xy=(551,951),text='{}'.format(identification),fill=(0,0,0), font = font)
     draw.text(xy=(420,1027),text='{}'.format(general_remarks),fill=(0,0,0), font = font)
-    img.save(r'gen_app\static\saved\TC_dup.pdf') 
-    return send_file(r'static\saved\TC_dup.pdf',attachment_filename='TC_dup.pdf')
+    img.save(r'/gen_app/static/saved/TC_dup.pdf') 
+    return send_file(r'/static/saved/TC_dup.pdf',attachment_filename='TC_dup.pdf')
 
 
 # conduct return route
 @app.route('/return_conduct/<string:rn>', methods=['GET'])
 @login_required
 def return_conduct(rn):
-    df = pd.read_csv('gen_app\static\excel.csv')
+    df = pd.read_csv('/gen_app/static/excel.csv')
     index = df.keys()                                       #getting the coulmn names
     index = list(index)                                        #turning it into list to make access easy 
     data = df[index[3]]                                     #passing the coulmn key name to the df and passing whole coulmn to data
@@ -300,7 +300,7 @@ def return_conduct(rn):
     w = q[0]                                                #q was a arry of arry and now we turn w into a single array and use it 
     today = datetime.date.today()
     today = today.strftime('%d-%m-%Y')
-    img  =  Image.open('gen_app\static\TC.jpg')
+    img  =  Image.open('/gen_app/static/TC.jpg')
     date_of_leaving = datetime.date.today()
     date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
@@ -319,7 +319,7 @@ def return_conduct(rn):
     identification = w[14]
     general_remarks = w[15]
     academic_year = w[16] 
-    img1  =  Image.open('gen_app\static\conduct.jpg')
+    img1  =  Image.open('/gen_app/static/conduct.jpg')
     draw1 = ImageDraw.Draw(img1)
     font = ImageFont.truetype("arial.ttf", 28)
     font1 = ImageFont.truetype("arial.ttf", 24)
@@ -347,8 +347,8 @@ def return_conduct(rn):
     draw1.text(xy=(375,846),text='{}'.format(course_and_branch),fill=(0,0,0), font = font1)
     draw1.text(xy=(440,905),text='{}'.format(academic_year),fill=(0,0,0), font = font1)
     draw1.text(xy=(338,1025),text='{}'.format(conduct),fill=(0,0,0), font = font1)
-    img1.save(r'gen_app\static\saved\conduct.pdf')
-    return send_file(r'static\saved\conduct.pdf',attachment_filename='conduct.pdf')
+    img1.save(r'/gen_app/static/saved/conduct.pdf')
+    return send_file(r'/static/saved/conduct.pdf',attachment_filename='conduct.pdf')
 
 
 # register route
@@ -417,18 +417,18 @@ def edit_tc(rn):
     if form.validate_on_submit():
         return render_template('info.html',title='Issued',rn=form.roll_num.data)
     elif request.method == 'GET':
-        df = pd.read_csv('gen_app\static\excel.csv')
+        df = pd.read_csv('/gen_app/static/excel.csv')
         index = df.keys()                                       #getting the coulmn names
-        index = list(index)                                        #turning it into list to make access easy 
+        index = list(index)                                     #turning it into list to make access easy 
         data = df[index[3]]                                     #passing the coulmn key name to the df and passing whole coulmn to data
         data = list(data)                                       #turning it into list for easy access
-        idx = data.index(rn)                                  #idx gives the index of the roll number entered in the array and we use it to find row
-        a = df.iloc[[idx]]                                        #using ilot to find one specific row which will later be found and passed fro the search function 
+        idx = data.index(rn)                                    #idx gives the index of the roll number entered in the array and we use it to find row
+        a = df.iloc[[idx]]                                      #using ilot to find one specific row which will later be found and passed fro the search function 
         q = a.values                                            #a is storing the data that is then turned into a np array which has all elements in one single element
         w = q[0]                                                #q was a arry of arry and now we turn w into a single array and use it 
         today = datetime.date.today()
         today = today.strftime('%d-%m-%Y')
-        img  =  Image.open('gen_app\static\TC.jpg')
+        img  =  Image.open('/gen_app/static/TC.jpg')
         date_of_leaving = datetime.date.today()
         date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
         draw = ImageDraw.Draw(img)

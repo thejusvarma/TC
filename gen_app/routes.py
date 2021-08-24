@@ -18,7 +18,7 @@ def home():
     form = RollNumForm()
     form2 = UploadForm()
     form3 = AppendFile()
-
+    
     if form.validate_on_submit():
         rn = form.roll_num.data
         df = pd.read_csv('gen_app/static/excel.csv')
@@ -87,7 +87,8 @@ def return_tc_preview(rn):
     date_of_leaving = datetime.date.today()
     date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("arial.ttf", 21)    
+    # font = ImageFont.truetype("arial.ttf", 21)    
+    font = ImageFont.load_default()
     admission_no = int(w[2])
     roll_number = w[3]
     name = w[4]
@@ -103,7 +104,8 @@ def return_tc_preview(rn):
     identification_1 = w[15]
     general_remarks = w[16]
     academic_year = w[17]
-    font1 = ImageFont.truetype("arial.ttf", 18)    
+    # font1 = ImageFont.truetype("arial.ttf", 18)    
+    font1 = ImageFont.load_default()
     draw.text(xy=(1300,426),text='{}'.format(name),fill=(0,0,0), font = font)
     draw.text(xy=(1300,470),text='{}'.format(father_name),fill=(0,0,0), font = font)
     draw.text(xy=(1300,514),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
@@ -160,7 +162,8 @@ def return_tc_original(rn):
     date_of_leaving = datetime.date.today()
     date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("arial.ttf", 21)    
+    # font = ImageFont.truetype("arial.ttf", 21)    
+    font = ImageFont.load_default()
     admission_no = int(w[2])
     roll_number = w[3]
     name = w[4]
@@ -176,7 +179,8 @@ def return_tc_original(rn):
     identification_1 = w[15]
     general_remarks = w[16]
     academic_year = w[17]  
-    font1 = ImageFont.truetype("arial.ttf", 18)  
+    # font1 = ImageFont.truetype("arial.ttf", 18)  
+    font1 = ImageFont.load_default()
     draw.text(xy=(1300,426),text='{}'.format(name),fill=(0,0,0), font = font)
     draw.text(xy=(1300,470),text='{}'.format(father_name),fill=(0,0,0), font = font)
     draw.text(xy=(1300,514),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
@@ -240,7 +244,8 @@ def return_tc_duplicate(rn):
     date_of_leaving = datetime.date.today()
     date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("arial.ttf", 21)    
+    # font = ImageFont.truetype("arial.ttf", 21)
+    font = ImageFont.load_default()    
     admission_no = int(w[2])
     roll_number = w[3]
     name = w[4]
@@ -256,7 +261,8 @@ def return_tc_duplicate(rn):
     identification_1 = w[15]
     general_remarks = w[16]
     academic_year = w[17]    
-    font1 = ImageFont.truetype("arial.ttf", 18)
+    # font1 = ImageFont.truetype("arial.ttf", 18)
+    font1 = ImageFont.load_default()
     draw.text(xy=(1300,426),text='{}'.format(name),fill=(0,0,0), font = font)
     draw.text(xy=(1300,470),text='{}'.format(father_name),fill=(0,0,0), font = font)
     draw.text(xy=(1300,514),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
@@ -314,7 +320,8 @@ def return_conduct(rn):
     date_of_leaving = datetime.date.today()
     date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("arial.ttf", 21)    
+    # font = ImageFont.truetype("arial.ttf", 21)    
+    font = ImageFont.load_default()
     admission_no = int(w[2])
     roll_number = w[3]
     name = w[4]
@@ -324,8 +331,10 @@ def return_conduct(rn):
     academic_year = w[17] 
     img1  =  Image.open('gen_app/static/conduct.jpg')
     draw1 = ImageDraw.Draw(img1)
-    font = ImageFont.truetype("arial.ttf", 28)
-    font1 = ImageFont.truetype("arial.ttf", 24)
+    # font = ImageFont.truetype("arial.ttf", 28)
+    font = ImageFont.load_default()
+    # font1 = ImageFont.truetype("arial.ttf", 24)
+    font1 = ImageFont.load_default()
     if len(name) >= 30:
         draw1.text(xy=(1380,610),text='{}'.format(name),fill=(0,0,0), font = font1)
     else:
@@ -403,13 +412,73 @@ def issued():
     data = Issued.query.filter_by(user_id=current_user.id).all()
     return render_template('issue.html',title='Issued',datas=data)
 
+# manual Tc generation
 @app.route("/manual_generate",methods=['GET','POST'])
 @login_required
 def manual_generate():
     form = ManualForm()
     if form.validate_on_submit():
         # draw data here
-        return render_template('info.html',title='Issued',form=form, rn=form.roll_num.data)
+        today = datetime.date.today()
+        today = today.strftime('%d-%m-%Y')
+        img  =  Image.open('gen_app/static/TC.jpg')
+        date_of_leaving = datetime.date.today()
+        date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
+        draw = ImageDraw.Draw(img)
+        # font = ImageFont.truetype("arial.ttf", 21)    
+        font = ImageFont.load_default()
+        admission_no = form.admission_number.data
+        roll_number = form.roll_num.data
+        name = form.student_name.data
+        father_name = form.father_name.data
+        date_of_birth = form.date_of_birth.data
+        community = form.community.data
+        date_of_admission =form.date_of_admission.data
+        course_and_branch = form.Name_of_course_and_branch.data
+        promotion = form.promotion.data
+        month_pass = form.Year_and_month_of_passing.data
+        conduct = form.conduct.data
+        identification = form.identification.data
+        identification_1 = form.identification_1.data
+        general_remarks = form.general_remarks.data
+        # font1 = ImageFont.truetype("arial.ttf", 18)    
+        font1 = ImageFont.load_default()
+        draw.text(xy=(1300,426),text='{}'.format(name),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,470),text='{}'.format(father_name),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,514),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,558),text='{}'.format(date_of_admission),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,602),text='{}'.format(course_and_branch),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,643),text='{}'.format(date_of_leaving),fill=(0,0,0), font = font)
+        
+        draw.text(xy=(1300,722),text='{}'.format(promotion),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,796),text='{}'.format(month_pass),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,840),text='{}'.format(conduct),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,889),text='{}'.format(community),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,932),text='{}'.format(identification),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,964),text='{}'.format(identification_1),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,1008),text='{}'.format(general_remarks),fill=(0,0,0), font = font)
+        draw.text(xy=(630,299),text='{}'.format(today),fill=(0,0,0), font = font)
+        draw.text(xy=(1775,335),text='{}'.format(today),fill=(0,0,0), font = font)
+        draw.text(xy=(650,362),text='{}'.format(roll_number),fill=(0,0,0), font = font)
+        draw.text(xy=(1786,370),text='{}'.format(roll_number),fill=(0,0,0), font = font)
+        draw.text(xy=(1057,370),text='{}'.format(admission_no),fill=(0,0,0), font = font)
+        draw.text(xy=(325,362),text='{}'.format(admission_no),fill=(0,0,0), font = font)
+        draw.text(xy=(280,445),text='{}'.format(name),fill=(0,0,0), font = font)
+        draw.text(xy=(420,489),text='{}'.format(father_name),fill=(0,0,0), font = font)
+        draw.text(xy=(420,533),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
+        draw.text(xy=(420,577),text='{}'.format(date_of_admission),fill=(0,0,0), font = font)
+        draw.text(xy=(420,621),text='{}'.format(course_and_branch),fill=(0,0,0), font = font)
+        draw.text(xy=(420,662),text='{}'.format(date_of_leaving),fill=(0,0,0), font = font)
+        
+        draw.text(xy=(420,741),text='{}'.format(promotion),fill=(0,0,0), font = font)
+        draw.text(xy=(420,815),text='{}'.format(month_pass),fill=(0,0,0), font = font)
+        draw.text(xy=(420,859),text='{}'.format(conduct),fill=(0,0,0), font = font)
+        draw.text(xy=(420,908),text='{}'.format(community),fill=(0,0,0), font = font)
+        draw.text(xy=(551,951),text='{}'.format(identification),fill=(0,0,0), font = font1)
+        draw.text(xy=(551,983),text='{}'.format(identification_1),fill=(0,0,0), font = font1)
+        draw.text(xy=(420,1027),text='{}'.format(general_remarks),fill=(0,0,0), font = font)
+        img.save(r'gen_app/static/saved/TC.pdf')
+        return send_file(r'static/saved/TC.pdf',attachment_filename='TC.pdf')
     return render_template('manual_generate.html',title='Issued',form=form)
 
 
@@ -435,7 +504,8 @@ def edit_tc(rn):
         date_of_leaving = datetime.date.today()
         date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
         draw = ImageDraw.Draw(img)
-        font = ImageFont.truetype("arial.ttf", 21)    
+        # font = ImageFont.truetype("arial.ttf", 21)
+        font = ImageFont.load_default()    
         form.admission_number.data = int(w[2])
         form.roll_num.data = w[3]
         form.student_name.data = w[4]

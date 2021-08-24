@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,PasswordField,SubmitField,BooleanField, TextAreaField
+from wtforms import StringField,PasswordField,SubmitField,BooleanField,RadioField
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms.validators import DataRequired,Length,Email,EqualTo,ValidationError
@@ -52,8 +52,9 @@ class ManualForm(FlaskForm):
     Name_of_course_and_branch = StringField('Course and Branch', validators=[DataRequired()])
     Year_and_month_of_passing = StringField('Year and month of passing')
     community = StringField('Community', validators=[DataRequired()])
-    promotion =  StringField('Promotion')
+    promotion = RadioField('Promotion', choices = ['Yes', 'No'])
     conduct =  StringField('Conduct')
     identification =  StringField('Identification')
+    identification_1 =  StringField('Identification')
     general_remarks =  StringField('General Remarks')
     submit = SubmitField('Submit')

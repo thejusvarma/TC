@@ -7,7 +7,7 @@
 {% endblock head %}
 {% block content %}
     <div class="container-form ">
-        <form method="POST" action="">
+        <form method="POST" action="" target="_blank">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="text-center">Student Details</legend>
@@ -165,9 +165,9 @@
                 </div>
             
                 <!-- Promotion -->
-                <div class="form-group">
+                <div class="form-group" style="color: white;">
                         {{ form.promotion.label(class="form-group-label") }}
-                        {{ form.promotion(class="form-control") }}
+                        {{ form.promotion() }}
                 </div>
 
                 <!-- identification -->
@@ -175,13 +175,19 @@
                     {{ form.identification.label(class="form-group-label") }}
                     {{ form.identification(class="form-control") }}
                 </div>
+
+                 <!-- identification_1-->
+                 <div class="form-group">
+                    {{ form.identification_1.label(class="form-group-label") }}
+                    {{ form.identification_1(class="form-control") }}
+                </div>
+
                 <!-- general_remarks -->
                 <div class="form-group">
                     {{ form.general_remarks.label(class="form-group-label") }}
                     {{ form.general_remarks(class="form-control") }}
                 </div>
             </fieldset>
-
             <div class="form-group text-center">
                 {{ form.submit(class="btn btn-secondary")}}
             </div> 

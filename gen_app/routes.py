@@ -21,6 +21,7 @@ def home():
     
     if form.validate_on_submit():
         rn = form.roll_num.data
+        
         df = pd.read_csv('gen_app/static/excel.csv')
         index = df.keys()                                       #getting the coulmn names
         index = list(index)                                        #turning it into list to make access easy 

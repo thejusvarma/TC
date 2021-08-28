@@ -107,6 +107,14 @@ def return_tc_preview(rn):
     academic_year = w[17]
     # font1 = ImageFont.truetype("arial.ttf", 18)    
     font1 = ImageFont.load_default()
+
+    # getting tc_number
+    db_data1 = Issued.query.order_by(Issued.id.desc()).first()
+    if db_data1:
+        tc_num = (db_data1.tc_num)+1
+    else:
+        tc_num = 8401
+    draw.text(xy=(968,335),text='{}'.format(tc_num),fill=(0,0,0), font = font) 
     draw.text(xy=(1300,426),text='{}'.format(name),fill=(0,0,0), font = font)
     draw.text(xy=(1300,470),text='{}'.format(father_name),fill=(0,0,0), font = font)
     draw.text(xy=(1300,514),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
@@ -126,6 +134,7 @@ def return_tc_preview(rn):
     draw.text(xy=(650,362),text='{}'.format(roll_number),fill=(0,0,0), font = font)
     draw.text(xy=(1786,370),text='{}'.format(roll_number),fill=(0,0,0), font = font)
     draw.text(xy=(1057,370),text='{}'.format(admission_no),fill=(0,0,0), font = font)
+    draw.text(xy=(243,299),text='{}'.format(tc_num),fill=(0,0,0), font = font)
     draw.text(xy=(325,362),text='{}'.format(admission_no),fill=(0,0,0), font = font)
     draw.text(xy=(280,445),text='{}'.format(name),fill=(0,0,0), font = font)
     draw.text(xy=(420,489),text='{}'.format(father_name),fill=(0,0,0), font = font)
@@ -182,6 +191,15 @@ def return_tc_original(rn):
     academic_year = w[17]  
     # font1 = ImageFont.truetype("arial.ttf", 18)  
     font1 = ImageFont.load_default()
+
+    # getting tc_number
+    db_data1 = Issued.query.order_by(Issued.id.desc()).first()
+    if db_data1:
+        tc_num = (db_data1.tc_num)+1
+    else:
+        tc_num = 8401
+    
+    draw.text(xy=(968,335),text='{}'.format(tc_num),fill=(0,0,0), font = font) 
     draw.text(xy=(1300,426),text='{}'.format(name),fill=(0,0,0), font = font)
     draw.text(xy=(1300,470),text='{}'.format(father_name),fill=(0,0,0), font = font)
     draw.text(xy=(1300,514),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
@@ -200,6 +218,7 @@ def return_tc_original(rn):
     draw.text(xy=(1775,335),text='{}'.format(today),fill=(0,0,0), font = font)
     draw.text(xy=(650,362),text='{}'.format(roll_number),fill=(0,0,0), font = font)
     draw.text(xy=(1786,370),text='{}'.format(roll_number),fill=(0,0,0), font = font)
+    draw.text(xy=(243,299),text='{}'.format(tc_num),fill=(0,0,0), font = font)
     draw.text(xy=(1057,370),text='{}'.format(admission_no),fill=(0,0,0), font = font)
     draw.text(xy=(325,362),text='{}'.format(admission_no),fill=(0,0,0), font = font)
     draw.text(xy=(280,445),text='{}'.format(name),fill=(0,0,0), font = font)
@@ -221,10 +240,18 @@ def return_tc_original(rn):
     if db_data:
         return send_file(r'static/saved/TC.pdf',attachment_filename='TC.pdf')
     else:
-        issue = Issued(roll_num = rn,author = current_user)
-        db.session.add(issue)
-        db.session.commit()
-        return send_file(r'static/saved/TC.pdf',attachment_filename='TC.pdf')
+        if db_data1:
+            issue = Issued(roll_num = rn,tc_num = (db_data1.tc_num)+1,author = current_user)
+            db.session.add(issue)
+            db.session.commit()
+            return send_file(r'static/saved/TC.pdf',attachment_filename='TC.pdf')
+        else:
+            issue = Issued(roll_num = rn,tc_num = 8401,author = current_user)
+            db.session.add(issue)
+            db.session.commit()
+            return send_file(r'static/saved/TC.pdf',attachment_filename='TC.pdf')
+            
+
 
 # return duplicate TC
 @app.route('/return_tc_duplicate/<string:rn>', methods=['GET'])
@@ -264,6 +291,15 @@ def return_tc_duplicate(rn):
     academic_year = w[17]    
     # font1 = ImageFont.truetype("arial.ttf", 18)
     font1 = ImageFont.load_default()
+
+    # getting tc_number
+    db_data1 = Issued.query.order_by(Issued.id.desc()).first()
+    if db_data1:
+        tc_num = (db_data1.tc_num)+1
+    else:
+        tc_num = 8401
+    
+    draw.text(xy=(968,335),text='{}'.format(tc_num),fill=(0,0,0), font = font) 
     draw.text(xy=(1300,426),text='{}'.format(name),fill=(0,0,0), font = font)
     draw.text(xy=(1300,470),text='{}'.format(father_name),fill=(0,0,0), font = font)
     draw.text(xy=(1300,514),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
@@ -284,6 +320,7 @@ def return_tc_duplicate(rn):
     draw.text(xy=(1786,370),text='{}'.format(roll_number),fill=(0,0,0), font = font)
     draw.text(xy=(1057,370),text='{}'.format(admission_no),fill=(0,0,0), font = font)
     draw.text(xy=(325,362),text='{}'.format(admission_no),fill=(0,0,0), font = font)
+    draw.text(xy=(243,299),text='{}'.format(tc_num),fill=(0,0,0), font = font)
     draw.text(xy=(280,445),text='{}'.format(name),fill=(0,0,0), font = font)
     draw.text(xy=(420,489),text='{}'.format(father_name),fill=(0,0,0), font = font)
     draw.text(xy=(420,533),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
@@ -372,12 +409,12 @@ def register():
     form = RegistrationForm()
     # if content is validated then flashing message and updating data into database
     if form.validate_on_submit():
-            hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-            user = User(username=form.username.data, email=form.email.data, password = hashed_password)
-            db.session.add(user)
-            db.session.commit()
-            flash(f'Account created!','success')
-            return redirect(url_for('home'))
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password = hashed_password)
+        db.session.add(user)
+        db.session.commit()
+        flash(f'Account created!','success')
+        return redirect(url_for('home'))
     return render_template('register.html',title='Register',form=form)
  
 # login route
@@ -444,6 +481,15 @@ def manual_generate():
         general_remarks = form.general_remarks.data
         # font1 = ImageFont.truetype("arial.ttf", 18)    
         font1 = ImageFont.load_default()
+
+        # getting tc_number
+        db_data1 = Issued.query.order_by(Issued.id.desc()).first()
+        if db_data1:
+            tc_num = (db_data1.tc_num)+1
+        else:
+            tc_num = 8401
+
+        draw.text(xy=(968,335),text='{}'.format(tc_num),fill=(0,0,0), font = font) 
         draw.text(xy=(1300,426),text='{}'.format(name),fill=(0,0,0), font = font)
         draw.text(xy=(1300,470),text='{}'.format(father_name),fill=(0,0,0), font = font)
         draw.text(xy=(1300,514),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)
@@ -464,6 +510,7 @@ def manual_generate():
         draw.text(xy=(1786,370),text='{}'.format(roll_number),fill=(0,0,0), font = font)
         draw.text(xy=(1057,370),text='{}'.format(admission_no),fill=(0,0,0), font = font)
         draw.text(xy=(325,362),text='{}'.format(admission_no),fill=(0,0,0), font = font)
+        draw.text(xy=(250,299),text='{}'.format(tc_num),fill=(0,0,0), font = font) 
         draw.text(xy=(280,445),text='{}'.format(name),fill=(0,0,0), font = font)
         draw.text(xy=(420,489),text='{}'.format(father_name),fill=(0,0,0), font = font)
         draw.text(xy=(420,533),text='{}'.format(date_of_birth),fill=(0,0,0), font = font)

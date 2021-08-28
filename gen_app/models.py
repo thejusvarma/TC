@@ -22,7 +22,8 @@ class Issued(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     roll_num = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False,default=datetime.now(IST))
+    tc_num =  db.Column(db.Integer,unique=False,nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False)
     def __repr__(self):
-        return f"Issued('{self.user_id}','{self.roll_num}','{self.date_posted}')" 
+        return f"Issued('{self.user_id}','{self.roll_num}','{self.date_posted}','{self.tc_num}')" 
 

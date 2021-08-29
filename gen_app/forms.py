@@ -4,32 +4,37 @@ from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms.validators import DataRequired,Length,Email,EqualTo,ValidationError
 from gen_app.models import User
-import pandas as pd
 
 
+
+# info page roll number form
 class RollNumForm(FlaskForm):
     roll_num = StringField('Roll Number', validators=[DataRequired()])
     submit = SubmitField('Check')
 
+# info page main file upload form
 class UploadForm(FlaskForm):
-    uploaded_file = FileField('Upload File',validators=[DataRequired(),FileAllowed(['csv'])])
+    uploaded_file = FileField('Upload File',validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+# info page append file form
 class AppendFile(FlaskForm):
-    append_file = FileField('Upload Append File',validators=[DataRequired(),FileAllowed(['csv'])])
+    append_file = FileField('Upload Append File',validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+# registration form
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(),Length(min=2,max=20)])
     email = StringField('Email', validators=[DataRequired(),Email()])
     password = PasswordField('Password', validators=[DataRequired(),Length(min=2,max=20)])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),EqualTo('password')])
     submit = SubmitField('Sign Up')
+    # checking if same name exists or not
     def validate_username(self,username):
         user = User.query.filter_by(username = username.data).first()
         if user:
             raise ValidationError('Username Already taken!')
-
+    # checking if same email-id exists or not
     def validate_email(self,email):
         user = User.query.filter_by(email = email.data).first()
         if user:
@@ -52,8 +57,8 @@ class ManualForm(FlaskForm):
     Name_of_course_and_branch = StringField('Course and Branch', validators=[DataRequired()])
     Year_and_month_of_passing = StringField('Year and month of passing')
     community = StringField('Community', validators=[DataRequired()])
-    promotion = RadioField('Promotion', choices = ['Yes', 'No'])
-    conduct =  StringField('Conduct')
+    promotion = RadioField('Promotion', choices = ['Yes','No'],default='Yes')
+    conduct =  StringField('Conduct',default='Satisfactory')
     identification =  StringField('Identification')
     identification_1 =  StringField('Identification')
     general_remarks =  StringField('General Remarks')

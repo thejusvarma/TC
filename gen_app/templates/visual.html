@@ -4,33 +4,40 @@
 {% endblock head %}
 {% block content %}
 <div class="col">
+    <br>
+     <!-- modal trigger link -->
+    <div class="text-center">
+      
+        <a class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Add file to main excel file</a>
+    
+        <a href="{{ url_for('home') }}" class="btn btn-danger">No</a>
+  
+    </div>
 
-    <div class="scrollspy">
+      <div class="scrollspy">
         <table class = 'table'>
-            <tr class = table_header>
-                {% for head in headings %}
-                <th class = "table_cell">
-                    {{head}}
-                </th>
-                {% endfor %}
-            </tr>
-            {%for row in dataframe%}
-            <tr class = "table_row">
-                {%for cell in row%}
-                <td class = "table_cell">{{cell}}</td>
-                {% endfor %}
-            </tr>
+          <tr class = table_header>
+            {% for head in headings %}
+            <th class = "table_cell">
+              {{head}}
+            </th>
             {% endfor %}
+          </tr>
+          {%for row in dataframe%}
+          <tr class = "table_row">
+            {%for cell in row%}
+            <td class = "table_cell">{{cell}}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
         </table>
-    </div>
+      </div>
 
+      
     <br>
     <br>
 
-    <!-- modal trigger link -->
-    <div class="text-center">  
-    <a class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Add file to main excel file</a>
-    </div>
+   
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

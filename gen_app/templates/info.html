@@ -21,7 +21,7 @@ myModal.addEventListener('shown.bs.modal', function () {
           <h5 class="card-title">Transfer Certificate</h5>
           <p class="card-text"></p>
           <a href="{{ url_for('return_tc_preview',rn=rn) }}" target="_blank"class="btn btn-primary">Preview</a>
-          <!-- <a href="{{ url_for('edit_tc',rn=rn) }}" target="_blank" class="btn btn-primary">Edit</a> -->
+          
           <a href="{{ url_for('return_tc_duplicate',rn=rn) }}" target="_blank" class="btn btn-primary">Duplicate</a>
           <!-- modal trigger link -->
           <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Original</a>
@@ -30,7 +30,7 @@ myModal.addEventListener('shown.bs.modal', function () {
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">WARNING </h5>
+                  <h5 class="modal-title text-center" id="exampleModalLabel">WARNING !</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>

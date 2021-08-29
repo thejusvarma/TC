@@ -27,7 +27,7 @@
     background: linear-gradient(40deg, #f34242, #ff0000);
     border-color: #ffffff;
     border-radius: 4px;
-    width: 50px;
+    width: 100px;
 }
 
 .btn-danger:hover{

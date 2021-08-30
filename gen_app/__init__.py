@@ -2,13 +2,22 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt 
 from flask_login import LoginManager
+import os
+import re
+import psycopg2
 
 app = Flask(__name__)
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 app.config['SECRET_KEY'] = '48c92cc12c8608d0ae64d2615acf501a'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+uri = os.getenv("DATABASE_URL")  # or other relevant config var
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+# rest of connection code using the connection string `uri`
+
+app.config['SQLALCHEMY_DATABASE_URI'] = uri
 db =  SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)

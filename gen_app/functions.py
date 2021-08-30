@@ -30,7 +30,8 @@ def tc(rn):
         date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
         draw = ImageDraw.Draw(img)
         # font = ImageFont.truetype("arial.ttf", 21)    
-        font = ImageFont.load_default()
+        # font = ImageFont.load_default()
+        font = ImageFont.truetype('/Library/Fonts/Arial.ttf', 21)
         admission_no = int(w[2])
         roll_number = w[3]
         name = w[4]
@@ -47,7 +48,8 @@ def tc(rn):
         general_remarks = w[16]
         academic_year = w[17]
         # font1 = ImageFont.truetype("arial.ttf", 18)    
-        font1 = ImageFont.load_default()
+        # font1 = ImageFont.load_default()
+        font1 = ImageFont.truetype('/Library/Fonts/Arial.ttf', 18)
 
         # getting tc_number
         db_data1 = Issued.query.order_by(Issued.id.desc()).first() 
@@ -120,7 +122,8 @@ def tc_dup(rn):
         date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
         draw = ImageDraw.Draw(img)
         # font = ImageFont.truetype("arial.ttf", 21)
-        font = ImageFont.load_default()    
+        # font = ImageFont.load_default()    
+        font = ImageFont.truetype('/Library/Fonts/Arial.ttf', 21)
         admission_no = int(w[2])
         roll_number = w[3]
         name = w[4]
@@ -137,7 +140,8 @@ def tc_dup(rn):
         general_remarks = w[16]
         academic_year = w[17]    
         # font1 = ImageFont.truetype("arial.ttf", 18)
-        font1 = ImageFont.load_default()
+        # font1 = ImageFont.load_default()
+        font1 = ImageFont.truetype('/Library/Fonts/Arial.ttf', 18)
 
         # getting tc_number
         db_data1 = Issued.query.order_by(Issued.id.desc()).first()
@@ -208,8 +212,6 @@ def conduct(rn):
         date_of_leaving = datetime.date.today()
         date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
         draw = ImageDraw.Draw(img)
-        # font = ImageFont.truetype("arial.ttf", 21)    
-        font = ImageFont.load_default()
         admission_no = int(w[2])
         roll_number = w[3]
         name = w[4]
@@ -220,9 +222,11 @@ def conduct(rn):
         img1  =  Image.open('gen_app/static/conduct.jpg')
         draw1 = ImageDraw.Draw(img1)
         # font = ImageFont.truetype("arial.ttf", 28)
-        font = ImageFont.load_default()
+        # font = ImageFont.load_default()
+        font = ImageFont.truetype('/Library/Fonts/Arial.ttf', 28)
         # font1 = ImageFont.truetype("arial.ttf", 24)
-        font1 = ImageFont.load_default()
+        # font1 = ImageFont.load_default()
+        font1 = ImageFont.truetype('/Library/Fonts/Arial.ttf', 24)
         # drawing on the conduct image
         if len(name) >= 30:
             draw1.text(xy=(1380,610),text='{}'.format(name),fill=(0,0,0), font = font1)
@@ -261,7 +265,9 @@ def manual_gen(form):
     date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
     # font = ImageFont.truetype("arial.ttf", 21)    
-    font = ImageFont.load_default()
+    # font = ImageFont.load_default()
+    font = ImageFont.truetype('/Library/Fonts/Arial.ttf', 21)
+
     admission_no = form.admission_number.data
     roll_number = form.roll_num.data
     name = form.student_name.data
@@ -278,6 +284,7 @@ def manual_gen(form):
     general_remarks = form.general_remarks.data
     # font1 = ImageFont.truetype("arial.ttf", 18)    
     font1 = ImageFont.load_default()
+    font1 = ImageFont.truetype('/Library/Fonts/Arial.ttf', 18)
     # getting next tc_number
     db_data1 = Issued.query.order_by(Issued.id.desc()).first()
     db_data2 = Issued.query.filter_by(roll_num=roll_number).first()

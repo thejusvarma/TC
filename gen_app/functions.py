@@ -31,7 +31,7 @@ def tc(rn):
         draw = ImageDraw.Draw(img)
         # font = ImageFont.truetype("arial.ttf", 21)    
         # font = ImageFont.load_default()
-        font = ImageFont.load("arial.pil",21)
+        font = ImageFont.load("arial.pil")
         admission_no = int(w[2])
         roll_number = w[3]
         name = w[4]
@@ -49,7 +49,7 @@ def tc(rn):
         academic_year = w[17]
         # font1 = ImageFont.truetype("arial.ttf", 18)    
         # font1 = ImageFont.load_default()
-        font1 = ImageFont.load("arial.pil",18)
+        font1 = ImageFont.load("arial.pil")
 
         # getting tc_number
         db_data1 = Issued.query.order_by(Issued.id.desc()).first() 

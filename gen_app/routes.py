@@ -97,17 +97,21 @@ def home():
 
     # third form - append file 
     if form3.validate_on_submit():
-        filename = secure_filename(form3.append_file.data.filename)
-        if not filename.endswith('.csv'):
-            flash(f'Only CSV file allowed!','danger')
-            return redirect(url_for('home'))
-        filepath = os.path.join(r'gen_app/static','excel_append.csv')
-        form3.append_file.data.save(filepath)
-        dataframe = pd.read_csv('gen_app/static/excel_append.csv')
-        index = dataframe.keys()                                       
-        index = list(index)
-        dataframe = dataframe.values.tolist()
-        return render_template('visual.html',title='Appended File', dataframe = dataframe, headings = index)
+        my_file = Path('gen_app/static/excel.csv')
+        if my_file.is_file():
+            filename = secure_filename(form3.append_file.data.filename)
+            if not filename.endswith('.csv'):
+                flash(f'Only CSV file allowed!','danger')
+                return redirect(url_for('home'))
+            filepath = os.path.join(r'gen_app/static','excel_append.csv')
+            form3.append_file.data.save(filepath)
+            dataframe = pd.read_csv('gen_app/static/excel_append.csv')
+            index = dataframe.keys()                                       
+            index = list(index)
+            dataframe = dataframe.values.tolist()
+            return render_template('visual.html',title='Appended File', dataframe = dataframe, headings = index)
+        else:
+            return render_template('errors/excel.html')
     return render_template('home.html',title='home',form=form,form2=form2,form3=form3)
 
 # append file route

@@ -260,8 +260,8 @@ def manual_gen(form):
     date_of_leaving = datetime.date.today()
     date_of_leaving = date_of_leaving.strftime('%d-%m-%Y')
     draw = ImageDraw.Draw(img)
-    # font = ImageFont.truetype("arial.ttf", 21)    
-    font = ImageFont.load_default()
+    font = ImageFont.truetype("arial.ttf", 21)    
+    # font = ImageFont.load_default()
     admission_no = form.admission_number.data
     roll_number = form.roll_num.data
     name = form.student_name.data

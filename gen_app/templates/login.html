@@ -3,8 +3,21 @@
 
 <!-- running the following code in content block of layout.html -->
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/login.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/login.css') }}">
+    <script type="text/javascript">
+        var toastTrigger = document.getElementById('liveToastBtn')
+        var toastLiveExample = document.getElementById('liveToast')
+        if (toastTrigger) {
+        toastTrigger.addEventListener('click', function () {
+            var toast = new bootstrap.Toast(toastLiveExample)
+
+            toast.show()
+        })
+        }
+        
+    </script>
 {% endblock head %}
+<!-- content block starts -->
 {% block content %}
 <br>
     <div class="container-cont">
@@ -53,5 +66,20 @@
 
         </form>
     </div>
+    
+    <div id="mybutton">
+        <div class="con">
+      
+            <!-- Left tooltip -->
+          <div class="con-tooltip top">
+            <p>Developed By</p>
+            <div class="tooltip ">
+              <p>Thejus varma and Sapan Raj Mathur</p>
+            </div>
+      
+        </div>
+    </div>
+
+    
   
 {% endblock content %}

@@ -31,8 +31,42 @@ h2{
   font-family: sans-serif;
   font-weight: 500;
   color: black;
-  
 }
+
+h2::before {  
+  transform: scaleX(0);
+  border-radius: 5px;
+  margin-left: -5%;
+  margin-top: -1%;
+  margin-bottom: -1%;
+  margin-right: -5%;
+  transform-origin: bottom right;
+}
+
+h2:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+h2::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 10; right: 0; bottom: 0; left: 0;
+  inset: 0 0 0 0;
+  background: linear-gradient(40deg, #fcfcfc, #fcf9ef);
+  opacity: 0.3;
+  z-index: -1;
+  transition: transform .3s ease;
+}
+
+@media (orientation: landscape) {
+  body {
+    grid-auto-flow: column;
+  }
+}
+
+
 hr.white {
     border-top: 1px solid whitesmoke;
     box-shadow: 0 4px 7px #d1b44d;    margin-left: auto;
@@ -59,3 +93,82 @@ legend{
   background: linear-gradient(40deg, #856d17, #bea443);
 
 }
+.feedback {
+  background-color : #31B0D5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border-color: #46b8da;
+}
+
+#mybutton {
+  position: fixed;
+  bottom: -4px;
+  right: 30px;
+  padding: -10px;
+}
+
+
+/*tooltip Box*/
+.con-tooltip {
+  position: relative;
+  background: rgb(212, 212, 212);
+  color: black;
+  border-radius: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 18px;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+  cursor: default;
+}
+
+/*tooltip */
+.tooltip {
+  visibility: hidden;
+  z-index: 1;
+  height: fit-content;
+  width: max-content;
+  padding-top: 19px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-right: auto;
+  background: #333;
+  color: #ffffff;
+  top:-140%;
+  left: -120%;
+  border-radius: 5px;
+  font-size: 21px;
+  transform: translateY(9px);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 3px rgba(56, 54, 54, 0.86);
+}
+
+
+
+.con-tooltip:hover .tooltip{
+  visibility: visible;
+  transform: translateY(-10px);
+  opacity: 1;
+  transition: .3s linear;
+  animation: odsoky 1s ease-in-out infinite  alternate;
+}
+
+@keyframes odsoky {
+  0%{
+    transform: translateY(6px);	
+  }
+  100%{
+    transform: translateY(1px);	
+  }
+
+}
+
+/*hover ToolTip*/
+.top:hover {transform: translateY(-5px);  }
+
+
+
+
+
+

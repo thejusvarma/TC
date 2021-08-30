@@ -9,15 +9,18 @@
     <table class="table table-dark table-hover">
         <thead>
           <tr class="table-heading">
+            <th scope="col">Tc Number </th>
             <th scope="col">Roll Number</th>
             <th scope="col">TC Issue Date</th>
+            <th scope="col">  </th>
           </tr>
         </thead>
         <tbody>
             {% for data in datas %}
             <tr>
+                <td>{{ data.tc_num }}</td>   
                 <td> {{ data.roll_num }} </td>
-                <td> {{ data.date_posted.strftime('%d-%m-%Y')}} </td>     
+                <td> {{ data.date_posted.strftime('%d-%m-%Y')}} </td>  
             </tr>
             {% endfor %}
         </tbody>

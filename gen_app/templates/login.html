@@ -4,24 +4,12 @@
 <!-- running the following code in content block of layout.html -->
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/login.css') }}">
-    <script type="text/javascript">
-        var toastTrigger = document.getElementById('liveToastBtn')
-        var toastLiveExample = document.getElementById('liveToast')
-        if (toastTrigger) {
-        toastTrigger.addEventListener('click', function () {
-            var toast = new bootstrap.Toast(toastLiveExample)
-
-            toast.show()
-        })
-        }
-        
-    </script>
 {% endblock head %}
 <!-- content block starts -->
 {% block content %}
 <br>
     <div class="container-cont">
-        <img src="../static/images/VJIT.jpg" alt="">   
+        <img class="clg-img"src="../static/images/VJIT.jpg" alt="">   
         <h2 class="centered">CERTIFICATE GENERATOR</h2>
     </div>
     <div class="container-login text-center">
@@ -66,20 +54,42 @@
 
         </form>
     </div>
-    
-    <div id="mybutton">
-        <div class="con">
-      
-            <!-- Left tooltip -->
-          <div class="con-tooltip top">
-            <p>Developed By</p>
-            <div class="tooltip ">
-              <p>Thejus varma and Sapan Raj Mathur</p>
+    <!-- dev-button -->
+    <button type="button" data-toggle="modal" data-target="#exampleModal" class="dev-button">Developers</button>
+    <!-- dev-button modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-center">
+                    <h5 class="modal-title text-center" id="exampleModalLabel">Developed By</h5>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-      
-        </div>
-    </div>
 
-    
+           <div class="cards-list">
+                    <div class="card 1">
+                        <div class="card_image"> 
+                            <img src="../static/images/thejus.jpeg" /> 
+                        </div>
+                        <div class="card_title title-white">
+                            <p>Thejus Varma</p>
+                        </div>
+                    </div>
+
+                    <div class="card 2">
+                        <div class="card_image">
+                            <img src="../static/images/sapan.jpeg" /> 
+                        </div>
+                        <div class="card_title title-white">
+                            <p>Sapan Raj Mathur</p>
+                        </div>
+                    </div>
+            </div>
+          </div>
+        </div>
+      </div>
   
 {% endblock content %}

@@ -287,11 +287,12 @@ def manual_gen(form):
     # getting next tc_number
     db_data1 = Issued.query.order_by(Issued.id.desc()).first()
     db_data2 = Issued.query.filter_by(roll_num=roll_number).first()
-    tc_num = 8401
     if db_data1:
         tc_num = (db_data1.tc_num)+1
         if db_data2:
             tc_num = db_data2.tc_num
+        else:
+            tc_num = 8401
     # drawing on tc image
     draw.text(xy=(968,335),text='{}'.format(tc_num),fill=(0,0,0), font = font) 
     draw.text(xy=(1300,426),text='{}'.format(name),fill=(0,0,0), font = font)

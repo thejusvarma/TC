@@ -123,7 +123,7 @@ def tc_dup(rn):
         draw = ImageDraw.Draw(img)
         # font = ImageFont.truetype("arial.ttf", 21)
         # font = ImageFont.load_default()    
-        font = ImageFont.truetype('/Library/Fonts/Arial.ttf', 21)
+        font = ImageFont.truetype('gen_app/static/Fonts/arial.ttf', 21)
         admission_no = int(w[2])
         roll_number = w[3]
         name = w[4]
@@ -141,7 +141,7 @@ def tc_dup(rn):
         academic_year = w[17]    
         # font1 = ImageFont.truetype("arial.ttf", 18)
         # font1 = ImageFont.load_default()
-        font1 = ImageFont.truetype('/Library/Fonts/Arial.ttf', 18)
+        font1 = ImageFont.truetype('gen_app/static/Fonts/arial.ttf', 18)
 
         # getting tc_number
         db_data1 = Issued.query.order_by(Issued.id.desc()).first()
@@ -223,10 +223,10 @@ def conduct(rn):
         draw1 = ImageDraw.Draw(img1)
         # font = ImageFont.truetype("arial.ttf", 28)
         # font = ImageFont.load_default()
-        font = ImageFont.truetype('/Library/Fonts/Arial.ttf', 28)
+        font = ImageFont.truetype('gen_app/static/Fonts/arial.ttf', 28)
         # font1 = ImageFont.truetype("arial.ttf", 24)
         # font1 = ImageFont.load_default()
-        font1 = ImageFont.truetype('/Library/Fonts/Arial.ttf', 24)
+        font1 = ImageFont.truetype('gen_app/static/Fonts/arial.ttf', 24)
         # drawing on the conduct image
         if len(name) >= 30:
             draw1.text(xy=(1380,610),text='{}'.format(name),fill=(0,0,0), font = font1)
@@ -266,7 +266,7 @@ def manual_gen(form):
     draw = ImageDraw.Draw(img)
     # font = ImageFont.truetype("arial.ttf", 21)    
     # font = ImageFont.load_default()
-    font = ImageFont.truetype('/Library/Fonts/Arial.ttf', 21)
+    font = ImageFont.truetype('gen_app/static/Fonts/arial.ttf', 21)
 
     admission_no = form.admission_number.data
     roll_number = form.roll_num.data
@@ -283,8 +283,7 @@ def manual_gen(form):
     identification_1 = form.identification_1.data
     general_remarks = form.general_remarks.data
     # font1 = ImageFont.truetype("arial.ttf", 18)    
-    font1 = ImageFont.load_default()
-    font1 = ImageFont.truetype('/Library/Fonts/Arial.ttf', 18)
+    font1 = ImageFont.truetype('gen_app/static/Fonts/arial.ttf', 18)
     # getting next tc_number
     db_data1 = Issued.query.order_by(Issued.id.desc()).first()
     db_data2 = Issued.query.filter_by(roll_num=roll_number).first()

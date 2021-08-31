@@ -11,7 +11,7 @@
   padding-bottom: 18px;
   border-radius: 5px;
 }
-img{
+.clg-img{
   opacity: 0.3;
   background-size:contain;
   border-radius: 5px;
@@ -93,82 +93,74 @@ legend{
   background: linear-gradient(40deg, #856d17, #bea443);
 
 }
-.feedback {
-  background-color : #31B0D5;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
-  border-color: #46b8da;
+
+
+.circular{
+  height: 70%;
 }
 
-#mybutton {
+.dev-button {
   position: fixed;
   bottom: -4px;
   right: 30px;
   padding: -10px;
-}
-
-
-/*tooltip Box*/
-.con-tooltip {
-  position: relative;
-  background: rgb(212, 212, 212);
+  background: rgb(197, 196, 196);
   color: black;
-  border-radius: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 18px;
+  border: none;
+  padding: 20px;
   display: inline-block;
   transition: all 0.3s ease-in-out;
   cursor: default;
-}
-
-/*tooltip */
-.tooltip {
-  visibility: hidden;
-  z-index: 1;
-  height: fit-content;
-  width: max-content;
-  padding-top: 19px;
-  padding-left: 12px;
-  padding-right: 12px;
-  margin-right: auto;
-  background: #333;
-  color: #ffffff;
-  top:-140%;
-  left: -120%;
-  border-radius: 5px;
-  font-size: 21px;
-  transform: translateY(9px);
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 3px rgba(56, 54, 54, 0.86);
-}
-
-
-
-.con-tooltip:hover .tooltip{
-  visibility: visible;
-  transform: translateY(-10px);
-  opacity: 1;
-  transition: .3s linear;
-  animation: odsoky 1s ease-in-out infinite  alternate;
-}
-
-@keyframes odsoky {
-  0%{
-    transform: translateY(6px);	
-  }
-  100%{
-    transform: translateY(1px);	
-  }
-
+  border-radius: 4px;
 }
 
 /*hover ToolTip*/
-.top:hover {transform: translateY(-5px);  }
+.dev-button:hover {transform: translateY(-5px);  }
 
+.cards-list {
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 
+.card {
+  margin: 30px auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 40px;
+  box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.25);
+  cursor: pointer;
+  transition: 0.4s;
+}
 
+.card .card_image {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+}
 
+.card .card_image img {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+  object-fit: cover;
+}
 
+.card .card_title {
+  text-align: center;
+  border-radius: 0px 0px 30px 30px;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: -50px;
+  color: white;
+  height: 40px;
+}
 
+.card:hover {
+  transform: scale(0.9, 0.9);
+  box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+    -5px -5px 30px 15px rgba(0,0,0,0.22);
+}

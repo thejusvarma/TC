@@ -40,7 +40,8 @@ def tc(rn):
         community = w[7]
         date_of_admission = w[8]
         course_and_branch = w[9]
-        promotion = w[11]
+        # promotion = w[11]
+        promotion = "Yes"
         month_pass = w[12]
         conduct = w[13]
         identification = w[14]
@@ -69,8 +70,7 @@ def tc(rn):
         draw.text(xy=(1300,558),text='{}'.format(date_of_admission),fill=(0,0,0), font = font)
         draw.text(xy=(1300,602),text='{}'.format(course_and_branch),fill=(0,0,0), font = font)
         draw.text(xy=(1300,643),text='{}'.format(date_of_leaving),fill=(0,0,0), font = font)
-        if promotion == nan:
-            draw.text(xy=(1300,722),text='{}'.format(promotion),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,722),text='{}'.format(promotion),fill=(0,0,0), font = font)
         draw.text(xy=(1300,796),text='{}'.format(month_pass),fill=(0,0,0), font = font)
         draw.text(xy=(1300,840),text='{}'.format(conduct),fill=(0,0,0), font = font)
         draw.text(xy=(1300,889),text='{}'.format(community),fill=(0,0,0), font = font)
@@ -90,8 +90,7 @@ def tc(rn):
         draw.text(xy=(420,577),text='{}'.format(date_of_admission),fill=(0,0,0), font = font)
         draw.text(xy=(420,621),text='{}'.format(course_and_branch),fill=(0,0,0), font = font)
         draw.text(xy=(420,662),text='{}'.format(date_of_leaving),fill=(0,0,0), font = font)
-        if promotion == nan:
-            draw.text(xy=(420,741),text='{}'.format(promotion),fill=(0,0,0), font = font)
+        draw.text(xy=(420,741),text='{}'.format(promotion),fill=(0,0,0), font = font)
         draw.text(xy=(420,815),text='{}'.format(month_pass),fill=(0,0,0), font = font)
         draw.text(xy=(420,859),text='{}'.format(conduct),fill=(0,0,0), font = font)
         draw.text(xy=(420,908),text='{}'.format(community),fill=(0,0,0), font = font)
@@ -132,7 +131,8 @@ def tc_dup(rn):
         community = w[7]
         date_of_admission = w[8]
         course_and_branch = w[9]
-        promotion = w[11]
+        # promotion = w[11]
+        promotion = "Yes"
         month_pass = w[12]
         conduct = w[13]
         identification = w[14]
@@ -160,8 +160,7 @@ def tc_dup(rn):
         draw.text(xy=(1300,558),text='{}'.format(date_of_admission),fill=(0,0,0), font = font)
         draw.text(xy=(1300,602),text='{}'.format(course_and_branch),fill=(0,0,0), font = font)
         draw.text(xy=(1300,643),text='{}'.format(date_of_leaving),fill=(0,0,0), font = font)
-        if promotion == nan:
-            draw.text(xy=(1300,722),text='{}'.format(promotion),fill=(0,0,0), font = font)
+        draw.text(xy=(1300,722),text='{}'.format(promotion),fill=(0,0,0), font = font)
         draw.text(xy=(1300,796),text='{}'.format(month_pass),fill=(0,0,0), font = font)
         draw.text(xy=(1300,840),text='{}'.format(conduct),fill=(0,0,0), font = font)
         draw.text(xy=(1300,889),text='{}'.format(community),fill=(0,0,0), font = font)
@@ -181,8 +180,7 @@ def tc_dup(rn):
         draw.text(xy=(420,577),text='{}'.format(date_of_admission),fill=(0,0,0), font = font)
         draw.text(xy=(420,621),text='{}'.format(course_and_branch),fill=(0,0,0), font = font)
         draw.text(xy=(420,662),text='{}'.format(date_of_leaving),fill=(0,0,0), font = font)
-        if promotion == nan:
-            draw.text(xy=(420,741),text='{}'.format(promotion),fill=(0,0,0), font = font)
+        draw.text(xy=(420,741),text='{}'.format(promotion),fill=(0,0,0), font = font)
         draw.text(xy=(420,815),text='{}'.format(month_pass),fill=(0,0,0), font = font)
         draw.text(xy=(420,859),text='{}'.format(conduct),fill=(0,0,0), font = font)
         draw.text(xy=(420,908),text='{}'.format(community),fill=(0,0,0), font = font)

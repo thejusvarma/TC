@@ -47,7 +47,7 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
-class ManualForm(FlaskForm):
+class TcManualForm(FlaskForm):
     admission_number = StringField('Admission Number', validators=[DataRequired()])
     roll_num = StringField('Roll Number', validators=[DataRequired()])
     student_name = StringField('Student Name', validators=[DataRequired()])
@@ -62,4 +62,25 @@ class ManualForm(FlaskForm):
     identification =  StringField('Identification')
     identification_1 =  StringField('Identification')
     general_remarks =  StringField('General Remarks')
+    submit = SubmitField('Submit')
+
+class ConductManualForm(FlaskForm):
+    admission_number = StringField('Admission Number', validators=[DataRequired()])
+    roll_num = StringField('Roll Number', validators=[DataRequired()])
+    student_name = StringField('Student Name', validators=[DataRequired()])
+    father_name = StringField('Father Name', validators=[DataRequired()])
+    Name_of_course_and_branch = StringField('Course and Branch', validators=[DataRequired()])
+    academic_year = StringField('Academic Year')
+    conduct =  StringField('Conduct',default='Satisfactory')
+    submit = SubmitField('Submit')
+
+class BonafideManualForm(FlaskForm):
+    admission_number = StringField('Admission Number')
+    bonafide_number = StringField('Bonafide Number')
+    roll_num = StringField('Roll Number')
+    student_name = StringField('Student Name')
+    father_name = StringField('Father Name')
+    academic_year = StringField('Academic Year')
+    semester = StringField('Semester')
+    reason = StringField('Reason')
     submit = SubmitField('Submit')

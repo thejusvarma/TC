@@ -8,14 +8,17 @@
 
     <div class="card text-center">
         <div class="card-body">
-            <h5 class="card-title">Manual Certificate Generation</h5>
+            <h4 class="card-title">Manual Certificate Generation</h4>
             <p class="card-text">To manually generate certificates please proceed with the following button</p>
-            <a type="button" href="{{ url_for('manual_generate') }}" class="btn btn-dark">Generate</a>
+            <a type="button" href="{{ url_for('tc_manual_generate') }}" class="btn btn-dark">TC</a>
+            <a type="button" href="{{ url_for('dup_tc_manual_generate') }}" class="btn btn-dark">Duplicate TC</a>
+            <a type="button" href="{{ url_for('conduct_manual_generate') }}" class="btn btn-dark">Conduct</a>
+            <a type="button" href="{{ url_for('bonafide_manual_generate') }}" class="btn btn-dark">Bonafide</a>
+            
         </div>
     </div>
     <br>
     <div class="row">
-
         <div class="container-form text-center">
             <form method="POST" action="">
                 {{ form.hidden_tag() }}

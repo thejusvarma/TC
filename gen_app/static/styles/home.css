@@ -27,7 +27,70 @@ legend{
     background: linear-gradient(40deg, #024b52, #54c0c0);
     border-color: #ffffff;
     border-radius: 4px;
-    width: 20%;
+    width: 15%;
+    margin: 10px;
+}
+
+.btn-dark:hover{
+    background: linear-gradient(40deg,#54c0c0, #024b52);
+    border-color: #ffffff;
+    border-radius: 4px;
+}
+
+
+.colour{
+    background: linear-gradient(10deg, #54c0c0, #024b52);
+    color: whitesmoke;
+    border: none;
+}
+
+.card{   
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);    margin-left: auto;
+}
+
+.btn-secondary{
+    background: linear-gradient(40deg, #bea443, #856d17);
+    width: 30%;
+    border:none;
+    border-radius: 4px;
+}
+.btn-secondary:hover{
+    background: linear-gradient(40deg, #856d17, #bea443);
+ 
+}
+.align-text{
+    text-align: center;
+}.container-home{
+    width:60%;
+    margin-top: 5%;
+}
+hr.white {
+    border-top:1px solid whitesmoke;
+    box-shadow: 0 4px 7px #ecc94b;    margin-left: auto;}
+
+legend{
+    color: #ecc94b;
+    margin-bottom: -10px;
+    font-weight: 500;
+}
+.container-form{
+    width: 46%;
+    background: linear-gradient(40deg, #54c0c0, #024b52);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 35px;
+    border-radius: 5px;
+    padding-bottom: -40px; 
+}
+
+.btn-dark{
+    background: linear-gradient(40deg, #024b52, #54c0c0);
+    border-color: #ffffff;
+    border-radius: 4px;
+    width: 15%;
+    margin: 10px;
 }
 
 .btn-dark:hover{

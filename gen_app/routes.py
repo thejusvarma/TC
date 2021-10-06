@@ -1,9 +1,9 @@
 from flask import Flask,render_template,url_for,flash,redirect,request,send_file
 from gen_app import app,db, bcrypt
 from gen_app.models import User,Issued
-from gen_app.functions import tc,tc_dup,conduct,manual_gen
+from gen_app.functions import tc ,tc_dup ,conduct,tc_manual_gen,dup_tc_manual_gen, conduct_manual_gen, bonafide_manual_gen
 import gen_app.handlers
-from gen_app.forms import RollNumForm, UploadForm , RegistrationForm, LoginForm, ManualForm, AppendFile
+from gen_app.forms import RollNumForm, UploadForm , RegistrationForm, LoginForm, TcManualForm, AppendFile, ConductManualForm, BonafideManualForm
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.utils import secure_filename
 from numpy import nan
@@ -153,8 +153,6 @@ def return_tc_original(rn):
         db.session.commit()
         return send_file(r'static/saved/TC.pdf',attachment_filename='TC.pdf')
             
-
-
 # return duplicate TC
 @app.route('/return_tc_duplicate/<string:rn>', methods=['GET'])
 @login_required
@@ -162,13 +160,14 @@ def return_tc_duplicate(rn):
     tc_dup(rn)
     return send_file(r'static/saved/TC_dup.pdf',attachment_filename='TC_dup.pdf')
 
+
 # manual Tc generation
-@app.route("/manual_generate",methods=['GET','POST'])
+@app.route("/tc_manual_generate",methods=['GET','POST'])
 @login_required
-def manual_generate():
-    form = ManualForm()
+def tc_manual_generate():
+    form = TcManualForm()
     if form.validate_on_submit():
-        manual_gen(form)
+        tc_manual_gen(form)
         db_data = Issued.query.filter_by(roll_num=form.roll_num.data).first()
         db_data1 = Issued.query.order_by(Issued.id.desc()).first()
         if db_data:
@@ -181,7 +180,37 @@ def manual_generate():
             db.session.add(issue)
             db.session.commit()
             return send_file(r'static/saved/TC.pdf',attachment_filename='TC.pdf')
-    return render_template('manual_generate.html',title='Issued',form=form)
+    return render_template('tc_manual_generate.html',title='TC Manual',form=form)
+
+# manual Duplicate Tc generation
+@app.route("/dup_tc_manual_generate",methods=['GET','POST'])
+@login_required
+def dup_tc_manual_generate():
+    form = TcManualForm()
+    if form.validate_on_submit():
+        dup_tc_manual_gen(form)
+        return send_file(r'static/saved/TC_dup.pdf',attachment_filename='TC_dup.pdf')
+    return render_template('tc_manual_generate.html',title='Duplicate TC',form=form)
+
+#manual conduct generation
+@app.route("/conduct_manual_generate",methods=['GET','POST'])
+@login_required
+def conduct_manual_generate():
+    form = ConductManualForm()
+    if form.validate_on_submit():
+        conduct_manual_gen(form)
+        return send_file(r'static/saved/conduct.pdf',attachment_filename='conduct.pdf')
+    return render_template('conduct_manual_generate.html',title='Conduct',form=form)
+
+# manual bonafide generation
+@app.route("/bonafide_manual_generate",methods=['GET','POST'])
+@login_required
+def bonafide_manual_generate():
+    form = BonafideManualForm()
+    if form.validate_on_submit():
+        bonafide_manual_gen(form)
+        return send_file(r'static/saved/bonafide.pdf',attachment_filename='bonafide.pdf')
+    return render_template('bonafide_manual_generate.html',title='Bonafide',form=form)
 
 # conduct return route
 @app.route('/return_conduct/<string:rn>', methods=['GET'])
@@ -191,6 +220,12 @@ def return_conduct(rn):
     return send_file(r'static/saved/conduct.pdf',attachment_filename='conduct.pdf')
 
 
+# bonafide return route
+# @app.route('/bonafide_conduct/<string:rn>', methods=['GET'])
+# @login_required
+# def return_bonafide(rn):
+#     bonafide(rn)
+#     return send_file(r'static/saved/bonafide.pdf',attachment_filename='bonafide.pdf')
 
 # Issued route 
 @app.route("/issued")

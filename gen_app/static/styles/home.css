@@ -27,7 +27,8 @@ legend{
     background: linear-gradient(40deg, #024b52, #54c0c0);
     border-color: #ffffff;
     border-radius: 4px;
-    width: 20%;
+    width: 15%;
+    margin: 10px;
 }
 
 .btn-dark:hover{

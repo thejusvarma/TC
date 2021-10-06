@@ -1,7 +1,8 @@
-# this file is executed first and its set using command -> $env:FLASK_APP="run.py"
-# change app to development server -> $env:FLASK_ENV="development" 
+# this file is executed first and its set using command -> $env:FLASK_APP="run.py" | export FLASK_APP="run.py"
+# change app to development server -> $env:FLASK_ENV="development" | export FLASK_ENV="development"
 # activate debugger -> set FLASK_DEBUG=1 
-# command to run the app -> python -m flask run
+# command to run the app -> python -m flask run | python3 -m flask run
+
 # bcrypt.generate_password_hash('password').decode('utf-8')
 # from flask_bcrypt import Bcrypt
 # bcrypt = Bcrypt()

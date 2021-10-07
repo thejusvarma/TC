@@ -136,6 +136,22 @@
                         {{ form.Name_of_course_and_branch(class="form-control") }}
                     {% endif %}
                 </div>
+
+                <!-- Year_and_month_of_passing -->
+                <div class="form-group">
+                    {% if form.Year_and_month_of_passing.errors %}
+                        {{ form.Year_and_month_of_passing.label(class="form-group-label") }}
+                        {{ form.Year_and_month_of_passing(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.Year_and_month_of_passing.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.Year_and_month_of_passing.label(class="form-group-label") }}
+                        {{ form.Year_and_month_of_passing(class="form-control") }}
+                    {% endif %}
+                </div>
                 
                 <div class="row">
                     <div class="col">
